@@ -34,7 +34,7 @@ def mkGraph(elem, mod="rand", son = None):
 def randomGraph(G, fN, elemLimit, sonLimit):
     """
     :param G: grafo
-    :param pila:
+    :param fN: firstNode
     :param elemLimit:
     :param sonLimit:
     :return:
@@ -58,7 +58,7 @@ def randomGraph(G, fN, elemLimit, sonLimit):
 def starGraph(G, fN, elemLimit):
     """
     :param G:
-    :param pila:
+    :param fN: firstNode
     :param elemLimit:
     :return:
     """
@@ -76,7 +76,7 @@ def linearGraph(G, fN, elemLimit):
     """
 
     :param G:
-    :param pila:
+    :param fN: firstNode
     :param elemLimit:
     :return:
     """
@@ -94,7 +94,7 @@ def linearGraph(G, fN, elemLimit):
 def fractalGraph(G, fN, elemLimit, sonLimit):
     """
     :param G: grafo
-    :param pila:
+    :param fN: firstNode
     :param elemLimit:
     :param sonLimit:
     :return:
