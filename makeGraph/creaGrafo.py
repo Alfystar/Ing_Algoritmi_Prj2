@@ -1,7 +1,9 @@
 from random import randint as rInt
+
 from graph.Graph_AdjacencyList import *
-#from priorityQueue.PQbinomialHeap import PQbinomialHeap
+# from priorityQueue.PQbinomialHeap import PQbinomialHeap
 from stack.Stack import PilaArrayList as stack
+
 
 def mkGraph(mod, elem):
     """
@@ -10,12 +12,12 @@ def mkGraph(mod, elem):
     :return: grafico sotto forma di lista di adiacenza
     """
     newGr = GraphAdjacencyList()
-    firstNode=newGr.addNode(rInt(-10,10))   #nodo con valore casuale
-    sk=stack()
-    print(type(firstNode))
+    firstNode = newGr.addNode(rInt(-10, 10))  # nodo con valore casuale
+    sk = stack()
     sk.push(firstNode.id)
     sk.stampa()
     return newGr
 
+
 if __name__ == '__main__':
-    mkGraph(0,0)
+    mkGraph(0, 0)

@@ -38,7 +38,7 @@ class GraphAdjacencyList(GraphBase):
         self.nodes[newnode.id] = newnode # add the new node to the dictionary
         self.adj[newnode.id] = List() # create the adjacency list for the new node
 
-        return newnode,
+        return newnode
 
     def deleteNode(self, nodeId):
         """
