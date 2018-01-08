@@ -1,5 +1,5 @@
 from graph.Graph import GraphBase
-from graph.base import Edge, Node
+from graph.base import Edge
 
 from list.DoubleLinkedList import ListaDoppiamenteCollegata as List
 
@@ -18,7 +18,7 @@ class GraphAdjacencyList(GraphBase):
         Constructor.
         """
         super().__init__()
-        self.adj = {} # adjacency lists {nodeID:listOfAdjacentNodes}
+        self.adj = {}  # adjacency lists {nodeID:listOfAdjacentNodes}
 
     def numEdges(self):
         """
@@ -33,10 +33,10 @@ class GraphAdjacencyList(GraphBase):
         :param elem: the node value.
         :return: the create node.
         """
-        newnode = super().addNode(elem) # create a new node with the correct ID
+        newnode = super().addNode(elem)  # create a new node with the correct ID
 
-        self.nodes[newnode.id] = newnode # add the new node to the dictionary
-        self.adj[newnode.id] = List() # create the adjacency list for the new node
+        self.nodes[newnode.id] = newnode  # add the new node to the dictionary
+        self.adj[newnode.id] = List()  # create the adjacency list for the new node
 
         return newnode
 
@@ -89,7 +89,6 @@ class GraphAdjacencyList(GraphBase):
         """
         return list(self.nodes.values())
 
-
     def insertEdge(self, tail, head, weight=None):
         """
         Add a new edge.
@@ -99,7 +98,7 @@ class GraphAdjacencyList(GraphBase):
         :return: the created edge, if created; None, otherwise.
         """
         # if tail and head exist, add the entry into the adjacency list
-        if tail in self.nodes and head in self.nodes: #TODO overwrite if edge already exists
+        if tail in self.nodes and head in self.nodes:  # TODO overwrite if edge already exists
             self.adj[tail].addAsLast(head)
 
     def deleteEdge(self, tail, head):
@@ -165,20 +164,21 @@ class GraphAdjacencyList(GraphBase):
         # else, return False
         return False
 
-    def getAdj(self, nodeId):
+    def getAdj(self, nodeId, exludeNodeId=None):  # ACB
         """
         Return all nodes adjacent to the one specified.
         :param nodeId: the node id.
+        :param exludeNodeId: the id of the node to be exlude (can't be the same of nodeId)
         :return: the list of nodes adjacent to the one specified.
         """
         result = []
         curr = self.adj[nodeId].getFirstRecord()
         while curr is not None:
-            result.append(curr.elem)
+            if (exludeNodeId != curr.elem): result.append(curr.elem)    #aggiungo tutto fuorchè il nodo escluso
             curr = curr.next
         return result
 
-    def getAdjList(self, nodeId):   #ACB
+    def getAdjList(self, nodeId):  # ACB
         """
         Return all nodes adjacent to the one specified.
         :param nodeId: the node id.
@@ -209,7 +209,7 @@ class GraphAdjacencyList(GraphBase):
         """
         # if the adjacency list is empty ...
         if self.isEmpty():
-            print ("Adjacency List: EMPTY")
+            print("Adjacency List: EMPTY")
             return
 
         # else ...
@@ -278,19 +278,19 @@ if __name__ == "__main__":
         tree = graph.genericSearch(node.id)
         s = tree.BFS()
         print("Generic Search with root {}: {}".format(node.id,
-                                               [str(item) for item in s]))
+                                                       [str(item) for item in s]))
 
     # execute a BFS
     for node in nodes:
         s = graph.bfs(node.id)
         print("BFS with root {}: {}".format(node.id,
-                                               [str(item) for item in s]))
+                                            [str(item) for item in s]))
 
     # execute a DFS
     for node in nodes:
         s = graph.dfs(node.id)
         print("DFS with root {}: {}".format(node.id,
-                                               [str(item) for item in s]))
+                                            [str(item) for item in s]))
 
     # remove all nodes
     for node in nodes:
