@@ -16,6 +16,8 @@ def mkGraph(mod, elem):
     sk = stack()
     sk.push(firstNode.id)
     sk.stampa()
+    for i in range(elem):
+
     return newGr
 
 
