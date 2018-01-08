@@ -1,4 +1,4 @@
-from list.LinkedList import ListaCollegata
+from queue.list.LinkedList import ListaCollegata
 from queue.Queue import CodaArrayList_deque as queue
 
 
