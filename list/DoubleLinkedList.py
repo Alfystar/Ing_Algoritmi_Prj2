@@ -1,4 +1,4 @@
-import LinkedList
+from list import LinkedList
 
 
 class DoubleRecord(LinkedList.Record):
