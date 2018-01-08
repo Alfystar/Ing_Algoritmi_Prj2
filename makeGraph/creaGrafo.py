@@ -5,9 +5,9 @@ from graph.Graph_AdjacencyList import *
 from stack.Stack import PilaArrayList as stack
 
 
-def mkGraph(mod, elem, son):
+def mkGraph(elem, son, mod = "rand"):
     """
-    :param mod: modalita: "rand",
+    :param mod: modalita: "rand", "star", "linear", "fractal"
     :param elem: numero massimo di elementi da aggiungere
     :param son: numero di figli, nel caso random il massimo possibile
     :return: grafico sotto forma di lista di adiacenza
@@ -18,13 +18,16 @@ def mkGraph(mod, elem, son):
     sk.push(firstNode)
     sk.stampa()
     if mod=="rand":
-        randomGrap(newGr,sk,elem,son)
-        del sk #eliminiamo la pila che era stata modificata dentro random
+        randomGraph(newGr,sk,elem,son)
 
+    elif mod=="star":
+        starGraph(newGr,sk,elem)
+
+    del sk  # eliminiamo la pila modificata in uno dei metodi
     return newGr
 
 
-def randomGrap(G,pila,elemLimit,sonLimit):
+def randomGraph(G,pila,elemLimit,sonLimit):
     """
     :param G: grafo
     :param pila:
@@ -39,11 +42,27 @@ def randomGrap(G,pila,elemLimit,sonLimit):
             son = G.addNode(rInt(-10, 10))
             notOriented(G, node, son)
             pila.push(son)
-            pila.stampa()
+            #pila.stampa()
             count += 1  # tengo traccia dell'aumento dei nodi
     #del pila  # cancello oggetto per far sovrascrivere memoria, la pila non è più necessaria
 
-
+def starGraph(G,pila,elemLimit):
+    """
+    :param G:
+    :param pila:
+    :param elemLimit:
+    :param sonLimit:
+    :return:
+    """
+    count = 1
+    while (count <= elemLimit):
+        if (not pila.isEmpty()): node = pila.pop()
+        for k in range(elemLimit-1):
+            son = G.addNode(rInt(-10, 10))
+            notOriented(G, node, son)
+            pila.push(son)
+            pila.stampa()
+            count += 1
 
 def notOriented(g,n1,n2):
     """
@@ -57,5 +76,6 @@ def notOriented(g,n1,n2):
 
 
 if __name__ == '__main__':
-    i=mkGraph("rand", 10,2)
+    i=mkGraph(10,2, "rand")
     i.print()
+    print('')
