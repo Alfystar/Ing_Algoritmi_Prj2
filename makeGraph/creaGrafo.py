@@ -5,7 +5,7 @@ from graph.Graph_AdjacencyList import *
 from stack.Stack import PilaArrayList as stack
 
 
-def mkGraph(elem, son, mod = "rand"):
+def mkGraph(elem, son, mod="rand"):
     """
     :param mod: modalita: "rand", "star", "linear", "fractal"
     :param elem: numero massimo di elementi da aggiungere
@@ -16,20 +16,20 @@ def mkGraph(elem, son, mod = "rand"):
     firstNode = newGr.addNode(rInt(-10, 10))  # nodo con valore casuale
     sk = stack()
     sk.push(firstNode)
-    if mod=="rand":
-        randomGraph(newGr,sk,elem,son)
+    if mod == "rand":
+        randomGraph(newGr, sk, elem, son)
 
-    elif mod=="star":
-        starGraph(newGr,sk,elem)
+    elif mod == "star":
+        starGraph(newGr, sk, elem)
 
-    elif mod=="linear":
-        starGraph(newGr,sk,elem)
+    elif mod == "linear":
+        linearGraph(newGr, sk, elem)
 
     del sk  # eliminiamo la pila modificata in uno dei metodi
     return newGr
 
 
-def randomGraph(G,pila,elemLimit,sonLimit):
+def randomGraph(G, pila, elemLimit, sonLimit):
     """
     :param G: grafo
     :param pila:
@@ -39,14 +39,15 @@ def randomGraph(G,pila,elemLimit,sonLimit):
     """
     count = 1
     while (count <= elemLimit):
-        if(not pila.isEmpty()): node = pila.pop()  # prendo nodo già inserito
+        if (not pila.isEmpty()): node = pila.pop()  # prendo nodo già inserito
         for k in range(rInt(0, sonLimit)):  # gli aggiungo un numero casuale di figli
             son = G.addNode(rInt(-10, 10))
             notOriented(G, node, son)
             pila.push(son)
             count += 1  # tengo traccia dell'aumento dei nodi
 
-def starGraph(G,pila,elemLimit):
+
+def starGraph(G, pila, elemLimit):
     """
     :param G:
     :param pila:
@@ -59,8 +60,23 @@ def starGraph(G,pila,elemLimit):
         notOriented(G, node, son)
 
 
+def linearGraph(G, pila, elemLimit):
+    """
 
-def notOriented(g,n1,n2):
+    :param G:
+    :param pila:
+    :param elemLimit:
+    :return:
+    """
+    count = 1
+    while (count <= elemLimit-1):
+        node = pila.pop()  # prendo nodo già inserito
+        son = G.addNode(rInt(-10, 10))
+        notOriented(G, node, son)
+        pila.push(son)
+        count += 1  # tengo traccia dell'aumento dei nodi
+
+def notOriented(g, n1, n2):
     """
     :param g: grafo
     :param n1: nodo 1
@@ -72,8 +88,11 @@ def notOriented(g,n1,n2):
 
 
 if __name__ == '__main__':
-    i=mkGraph(10,2, "rand")
+    i = mkGraph(10, 2, "rand")
     i.print()
     print('')
     j = mkGraph(10, 2, "star")
     j.print()
+    print('')
+    k = mkGraph(10, 2, "linear")
+    k.print()
