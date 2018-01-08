@@ -89,6 +89,7 @@ class GraphAdjacencyList(GraphBase):
         """
         return list(self.nodes.values())
 
+
     def insertEdge(self, tail, head, weight=None):
         """
         Add a new edge.
@@ -174,6 +175,19 @@ class GraphAdjacencyList(GraphBase):
         curr = self.adj[nodeId].getFirstRecord()
         while curr is not None:
             result.append(curr.elem)
+            curr = curr.next
+        return result
+
+    def getAdjList(self, nodeId):   #ACB
+        """
+        Return all nodes adjacent to the one specified.
+        :param nodeId: the node id.
+        :return: the list of nodes adjacent to the one specified. !!!Every element in a different list!!!
+        """
+        result = []
+        curr = self.adj[nodeId].getFirstRecord()
+        while curr is not None:
+            result.append([curr.elem])
             curr = curr.next
         return result
 

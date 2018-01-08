@@ -1,9 +1,15 @@
 # Progetto-2
 x:marta emanuele e filippo
-test
 
-test2
-da marta
-e da ema
+Regole di sintassi:
+1) Le aggiunte nel codice dei prof devono avere vicino al def:
+"#ACB" ovvero Alfano Caggiano Badalamenti
 
-aggiunta nuova
+2)
+
+
+
+
+
+Lista Funzioni modificate o aggiunte:
+1) graph/Graph_AdjacencyList aggiunto "getAdjList"
