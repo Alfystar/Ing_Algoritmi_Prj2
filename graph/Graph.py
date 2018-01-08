@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from base import Node
+from graph.base import Node
 from tree.treeArrayList import TreeArrayListNode as TreeNode
 from tree.treeArrayList import TreeArrayList as Tree
 from queue.Queue import CodaArrayList_deque as Queue
