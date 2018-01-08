@@ -75,13 +75,11 @@ def linearGraph(G, fN, elemLimit):
     :return:
     """
     node = fN
-    count = 1
-    while (count <= elemLimit-1):
+    for k in range(elemLimit-1):
          # prendo nodo già inserito
         son = G.addNode(rInt(-10, 10))
         notOriented(G, node, son)
         node = son
-        count += 1  # tengo traccia dell'aumento dei nodi
 
 def fractalGraph(G, fN, elemLimit, sonLimit):
     """
@@ -105,7 +103,6 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
             notOriented(G, node, son)
             coda.enqueue(son)
             count += 1  # tengo traccia dell'aumento dei nodi
-
     del coda  # eliminiamo la coda
 
 
