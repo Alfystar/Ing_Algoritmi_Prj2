@@ -18,27 +18,31 @@ def mkGraph(mod, elem, son):
     sk.push(firstNode)
     sk.stampa()
     if mod=="rand":
-        return randomGrap(newGr,sk,elem,son)
+        randomGrap(newGr,sk,elem,son)
+        del sk
+
+    return newGr
 
 
-def randomGrap(G,pila,elemMax,sonMax):
+def randomGrap(G,pila,elemLimit,sonLimit):
     """
     :param G: grafo
     :param pila:
-    :param elemMax:
-    :param sonMax:
+    :param elemLimit:
+    :param sonLimit:
     :return:
     """
-    count = 0
-    while (count <= elemMax):
-        node = pila.pop()  # prendo nodo già inserito
-        for k in range(rInt(0, sonMax)):  # gli aggiungo un numero casuale di figli
-            sonMax = G.addNode(rInt(-10, 10))
-            notOriented(newGr, node, sonMax)
-            pila.push(sonMax)
+    count = 1
+    while (count <= elemLimit):
+        if(not pila.isEmpty()): node = pila.pop()  # prendo nodo già inserito
+        for k in range(rInt(0, sonLimit)):  # gli aggiungo un numero casuale di figli
+            son = G.addNode(rInt(-10, 10))
+            notOriented(G, node, son)
+            pila.push(son)
+            pila.stampa()
             count += 1  # tengo traccia dell'aumento dei nodi
     del pila  # cancello oggetto per far sovrascrivere memoria, la pila non è più necessaria
-    return G
+    #return G
 
 
 
@@ -54,4 +58,5 @@ def notOriented(g,n1,n2):
 
 
 if __name__ == '__main__':
-    mkGraph(0, 0)
+    i=mkGraph("rand", 10,2)
+    i.print()
