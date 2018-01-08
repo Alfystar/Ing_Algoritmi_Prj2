@@ -62,34 +62,26 @@ def starGraph(G, fN, elemLimit):
     :param elemLimit:
     :return:
     """
-
-    pila = stack()
-    pila.push(fN)
-    node = pila.pop()
-
+    node = fN
     for k in range(elemLimit-1):
         son = G.addNode(rInt(-10, 10))
         notOriented(G, node, son)
-    del pila # eliminiamo la pila
 
 def linearGraph(G, fN, elemLimit):
     """
-
     :param G:
     :param fN: firstNode
     :param elemLimit:
     :return:
     """
-    pila = stack()
-    pila.push(fN)
+    node = fN
     count = 1
     while (count <= elemLimit-1):
-        node = pila.pop()  # prendo nodo già inserito
+         # prendo nodo già inserito
         son = G.addNode(rInt(-10, 10))
         notOriented(G, node, son)
-        pila.push(son)
+        node = son
         count += 1  # tengo traccia dell'aumento dei nodi
-    del pila  # eliminiamo la pila
 
 def fractalGraph(G, fN, elemLimit, sonLimit):
     """
