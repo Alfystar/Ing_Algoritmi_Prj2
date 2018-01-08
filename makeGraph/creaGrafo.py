@@ -19,7 +19,7 @@ def mkGraph(mod, elem, son):
     sk.stampa()
     if mod=="rand":
         randomGrap(newGr,sk,elem,son)
-        del sk
+        del sk #eliminiamo la pila che era stata modificata dentro random
 
     return newGr
 
@@ -41,8 +41,7 @@ def randomGrap(G,pila,elemLimit,sonLimit):
             pila.push(son)
             pila.stampa()
             count += 1  # tengo traccia dell'aumento dei nodi
-    del pila  # cancello oggetto per far sovrascrivere memoria, la pila non è più necessaria
-    #return G
+    #del pila  # cancello oggetto per far sovrascrivere memoria, la pila non è più necessaria
 
 
 
