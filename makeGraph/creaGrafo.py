@@ -38,7 +38,7 @@ def randomGraph(G, pila, elemLimit, sonLimit):
     :return:
     """
     count = 1
-    while (count <= elemLimit):
+    while (count <= elemLimit-1):
         if (not pila.isEmpty()): node = pila.pop()  # prendo nodo già inserito
         for k in range(rInt(0, sonLimit)):  # gli aggiungo un numero casuale di figli
             son = G.addNode(rInt(-10, 10))
