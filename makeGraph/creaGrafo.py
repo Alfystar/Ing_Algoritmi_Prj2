@@ -16,11 +16,13 @@ def mkGraph(elem, son, mod = "rand"):
     firstNode = newGr.addNode(rInt(-10, 10))  # nodo con valore casuale
     sk = stack()
     sk.push(firstNode)
-    sk.stampa()
     if mod=="rand":
         randomGraph(newGr,sk,elem,son)
 
     elif mod=="star":
+        starGraph(newGr,sk,elem)
+
+    elif mod=="linear":
         starGraph(newGr,sk,elem)
 
     del sk  # eliminiamo la pila modificata in uno dei metodi
@@ -42,27 +44,21 @@ def randomGraph(G,pila,elemLimit,sonLimit):
             son = G.addNode(rInt(-10, 10))
             notOriented(G, node, son)
             pila.push(son)
-            #pila.stampa()
             count += 1  # tengo traccia dell'aumento dei nodi
-    #del pila  # cancello oggetto per far sovrascrivere memoria, la pila non è più necessaria
 
 def starGraph(G,pila,elemLimit):
     """
     :param G:
     :param pila:
     :param elemLimit:
-    :param sonLimit:
     :return:
     """
-    count = 1
-    while (count <= elemLimit):
-        if (not pila.isEmpty()): node = pila.pop()
-        for k in range(elemLimit-1):
-            son = G.addNode(rInt(-10, 10))
-            notOriented(G, node, son)
-            pila.push(son)
-            pila.stampa()
-            count += 1
+    node = pila.pop()
+    for k in range(elemLimit-1):
+        son = G.addNode(rInt(-10, 10))
+        notOriented(G, node, son)
+
+
 
 def notOriented(g,n1,n2):
     """
@@ -79,3 +75,5 @@ if __name__ == '__main__':
     i=mkGraph(10,2, "rand")
     i.print()
     print('')
+    j = mkGraph(10, 2, "star")
+    j.print()
