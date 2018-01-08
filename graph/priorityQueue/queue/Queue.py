@@ -1,5 +1,5 @@
 from collections import deque
-from graph.priorityQueue.queue.list.LinkedList import ListaCollegata
+from .list.LinkedList import ListaCollegata
 
 class CodaListaCollegata(ListaCollegata):    
     """ Implementation of a FIFO queue using a linked list.
