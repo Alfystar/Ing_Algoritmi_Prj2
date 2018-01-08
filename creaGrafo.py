@@ -1,2 +1,0 @@
-asdigawekjvthnrqjhgqvòweakhtvmsr
-SDLIVQUMTLAIGSAILTHRALI
