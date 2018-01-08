@@ -182,7 +182,7 @@ class GraphAdjacencyList(GraphBase):
         """
         Return all nodes adjacent to the one specified.
         :param nodeId: the node id.
-        :return: the list of nodes adjacent to the one specified. Every element in a different list
+        :return: the list of nodes adjacent to the one specified. !!!Every element in a different list!!!
         """
         result = []
         curr = self.adj[nodeId].getFirstRecord()
