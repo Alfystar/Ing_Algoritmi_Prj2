@@ -1,44 +1,40 @@
-if __name__ == '__main__':
-    from makeGraph.creaGrafo import mkGraph
+from makeGraph.creaGrafo import mkGraph
+
+debug = False
 
 
 def medNode(G, node):
-    sonBranch = G.getAdjList(node.id)  # lista contenente i figli
-    # listNode = G.getNodes()
-    print("figli nel primo livello:[{}".format(sonBranch))
+    sonLevel = G.getAdjList(node.id)  # lista contenente i figli
+    if (debug): print("figli nel primo passo:{}".format(sonLevel))
     count = 0
-    ramo = []
-    while (len(sonBranch) >= 2):  # procedo finche almeno 2 rami del nodo origine hanno dei figli
-        count += pathsCountLevel(sonBranch)  # ottengo le coppie per questo livello
-        for i in range(len(sonBranch)):  # ottengo il nuovo livello da calcolare
-            ramo = (sonBranch.pop())
-            newSonBranch = []
-            idDad = ramo[i]
-            for i in range(len(ramo)):
-                newSonBranch.extend(hisSon(G, idDad, ramo[i]))
-
-    print("numero percorsi:{}".format(count))
-
+    while (len(sonLevel) >= 2):  # procedo finche almeno 2 rami del nodo origine hanno dei figli
+        count += pathsCountLevel(sonLevel)  # ottengo le coppie per questo livello(
+        if (debug): print("percorsi trovati:{}".format(count))
+        sonNewLevel = []
+        for branch in sonLevel:  # per ogni ramo(i discendenti dei primi figli)
+            sonBranch = []
+            if (debug): print("ramo analizzato:{}".format(branch))
+            for n in branch:  # per ogni nodo dentro i rami
+                if (debug): print("\tnodo analizzato:{}".format(n))
+                sonBranch.extend(hisSon(G, n[1], n[0]))  # i figli dei nodi meno il loro padre
+            if (len(sonBranch) != 0): sonNewLevel.append(sonBranch)
+        if (debug): print("il nuovo livello che verrà aggiunto sarà:\n{}".format(sonNewLevel))
+        if (debug): print(("dimensione livello:{}".format(len(sonNewLevel))))
+        sonLevel = sonNewLevel
+    if (debug): print("numero percorsi finali:{}".format(count))
     return count
 
 
-def sonNextLevel(G, ramiAttuali, padriRamiAttuali):
-
-
-# hisSon(G, listNode[0], listNode[1])
-
-
-def hisSon(G, nodeDad, node):
+def hisSon(G, nodeDadId, nodeId):
     """
     Funzione che ritorna tutti i filgli di un nodo sapendo chi era suo padre
     e quindi evitando di riprenderlo
     :param G: grafo
     :param nodeDad: padre del nodo di cui sapere figli
     :param node: nodo per i quali siamo interessati ad avere i figli
-    :return: lista dei suoi nodi figli(sotto forma di id) eslusi suo padre
+    :return: ramo, con dentro i nodi e loro padre: [[idNodi figli,idNodo padre],altri son....]  nella lista è escluso il padre
     """
-    son = G.getAdj(node.id, nodeDad.id)
-    # print("figli del nodo {} provenienti dal nodo {} sono:{}".format(node.id,nodeDad.id,son))
+    son = G.getAdj(nodeId, nodeDadId)
     return son
 
 
@@ -46,33 +42,30 @@ def pathsCountLevel(sonLevel):
     """
     funzione che calcola per un certo livello quanti cammini non doppi si possono fare
     che passano per il nodo originale NODE
-    :param sonLevel: lista di lista dove ogni lista contiene i discendenti dei primi figli di NODE, NESSUNA LISTA VUOTA
+    :param sonLevel: lista di lista dove ogni lista contiene ramo discendenti dei primi figli di NODE, NESSUNA LISTA VUOTA
     :return: numero di percorsi
     """
+    if (debug): print("conta dei percorsi tra:{}".format(sonLevel))
     count = 0
     allNode = 0
-    print("figli nel livello:{}".format(sonLevel))
-    for i in sonLevel:  # tutti i figli nei vari sotto blocchi
-        if (type(i) == int):
-            allNode += 1
-        else:
-            allNode += len(i)
+    for branch in sonLevel:  # per ogni ramo
+        if (debug): print("\tramo:{}".format(branch))
+        allNode += len(branch)
 
-    print("nodi presenti:{}".format(allNode))
+    if (debug): print("\tnodi totali presenti:{}".format(allNode))
 
-    for i in range(len(sonLevel)):
-        if (type(sonLevel[i]) == int):
-            count += (allNode - 1)  # caso particolare 1*(allNode - 1)
-            allNode -= 1
-        else:
-            count += len(sonLevel[i]) * (allNode - len(sonLevel[i]))
-            allNode -= len(sonLevel[i])
+    for branch in sonLevel:
+        if (debug): print("\tramo:{}".format(branch))
+        count += len(branch) * (allNode - len(branch))
+        allNode -= len(branch)
+    if (debug): print("\tpercorsi contati:{}".format(count))
     return count
 
 
 if __name__ == '__main__':
-    print("funzione per trovare quante volte il nodo n è medio in G")
-    i = mkGraph(55, 15)
+    if (debug): print("funzione per trovare quante volte il nodo n è medio in G")
+    i = mkGraph(7, "fractal", 2)
     listNode = i.getNodes()
     i.print()
-    medNode(i, listNode[0])
+    print(
+        "il nodo '{}' è medio {} volte di un percorsi minimi nel grafo".format(listNode[0].id, medNode(i, listNode[0])))

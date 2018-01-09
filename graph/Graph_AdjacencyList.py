@@ -174,20 +174,23 @@ class GraphAdjacencyList(GraphBase):
         result = []
         curr = self.adj[nodeId].getFirstRecord()
         while curr is not None:
-            if (exludeNodeId != curr.elem): result.append(curr.elem)    #aggiungo tutto fuorchè il nodo escluso
+            if (exludeNodeId != curr.elem): #
+                if(exludeNodeId!=None): result.append([curr.elem,nodeId])  # aggiungo tutto fuorchè il nodo escluso, e lo metto al secondo indirizzo
+                else :result.append(curr.elem)    #aggiungo tutto fuorchè il nodo escluso
             curr = curr.next
-        return result
+        return result   #[adiacenti], [[n1,dad],[n2,dad],ecc...]
 
     def getAdjList(self, nodeId):  # ACB
         """
         Return all nodes adjacent to the one specified.
         :param nodeId: the node id.
         :return: the list of nodes adjacent to the one specified. !!!Every element in a different list!!!
+                    [[[n1/dad]],[[n2/dad]],[[n3/dad]],ecc..] formato di inizializzazione
         """
         result = []
         curr = self.adj[nodeId].getFirstRecord()
         while curr is not None:
-            result.append([curr.elem])
+            result.append([[curr.elem,nodeId]])
             curr = curr.next
         return result
 

@@ -13,3 +13,4 @@ Regole di sintassi:
 
 Lista Funzioni modificate o aggiunte:
 1) graph/Graph_AdjacencyList aggiunto "getAdjList"
+2) graph/Graph_AdjacencyList modificato pesantemente "getAdj"
