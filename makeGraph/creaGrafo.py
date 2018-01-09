@@ -28,6 +28,9 @@ def mkGraph(elem, mod="rand", son = 5):
     elif mod == "fractal":
         fractalGraph(newGr, firstNode, elem, son)
 
+    elif mod == "rand2":
+        randomGraph2(newGr,elem)
+
     return newGr
 
 
@@ -118,6 +121,29 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
     del coda  # eliminiamo la coda
 
 
+def randomGraph2(G,elemLimit):
+    """
+    Genera un grafo in maniera random. Il comando "del l" finale serve a deallocare lo spazio precedentemente occupato
+    dalla lista l.
+
+    :param G: grafo contenente fN
+    :param elemLimit: numero massimo di elementi da aggiungere al grafo, è lo stesso di mkGraph
+    :return:
+    """
+
+    count = 1
+    #oldNode = fN
+    while (count <= elemLimit - 1):
+        newNode = G.addNode(rInt(-10, 10))
+        l = G.getNodes()
+        oldNode = l[rInt(0, len(l) - 1)]
+        while (oldNode == newNode):
+            oldNode = l[rInt(0, len(l) - 1)]
+        notOriented(G, newNode, oldNode)
+        count += 1
+    del l
+
+
 def notOriented(g, n1, n2):
     """
     Crea due archi per collegare n1 ed n2 tramite liste di adiacenza.
@@ -132,14 +158,18 @@ def notOriented(g, n1, n2):
 
 
 if __name__ == '__main__':
+    print("random v1")
     g1 = mkGraph(20, "rand", 5)
     g1.print()
-    print('')
+    print("star")
     g2 = mkGraph(20, "star")
     g2.print()
-    print('')
+    print("linear")
     g3 = mkGraph(20, "linear")
     g3.print()
-    print('')
+    print("fractal")
     g4 = mkGraph(20, "fractal", 3)
     g4.print()
+    print("random v2")
+    g5 = mkGraph(20, "rand2")
+    #g5.print()
