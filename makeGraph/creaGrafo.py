@@ -6,7 +6,7 @@ from stack.Stack import PilaArrayList as stack
 from queue.Queue import CodaArrayList_deque as queue
 
 
-def mkGraph(elem, mod="rand", son = None):
+def mkGraph(elem, mod="rand", son = 5):
     """
     :param mod: modalita: "rand", "star", "linear", "fractal"
     :param elem: numero massimo di elementi da aggiungere
