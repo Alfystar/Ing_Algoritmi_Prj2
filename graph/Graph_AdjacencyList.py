@@ -174,11 +174,11 @@ class GraphAdjacencyList(GraphBase):
         result = []
         curr = self.adj[nodeId].getFirstRecord()
         while curr is not None:
-            if (exludeNodeId != curr.elem): #
-                if(exludeNodeId!=None): result.append([curr.elem,nodeId])  # aggiungo tutto fuorchè il nodo escluso, e lo metto al secondo indirizzo
-                else :result.append(curr.elem)    #aggiungo tutto fuorchè il nodo escluso
+            if (exludeNodeId != curr.elem):
+                if(exludeNodeId!=None): result.append([curr.elem,nodeId])  # aggiungo i figli del nodo,escludendo il padre che metto al secondo indirizzo
+                else :result.append(curr.elem)    #aggiungo i figli del nodo fuorchè il nodo padre
             curr = curr.next
-        return result   #[adiacenti], [[n1,dad],[n2,dad],ecc...]
+        return result   #[adiacenti] o [[n1,dad],[n2,dad],ecc...]
 
     def getAdjList(self, nodeId):  # ACB
         """
