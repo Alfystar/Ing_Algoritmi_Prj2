@@ -9,17 +9,17 @@ def medNode(G, node):
     count = 0
     while (len(sonLevel) >= 2):  # procedo finche almeno 2 rami del nodo origine hanno dei figli
         count += pathsCountLevel(sonLevel)  # ottengo le coppie per questo livello(
-        if (debug): print("percorsi trovati:{}".format(count))
+        if (debug): print("\tpercorsi trovati:{}".format(count))
         sonNewLevel = []
         for branch in sonLevel:  # per ogni ramo(i discendenti dei primi figli)
             sonBranch = []
-            if (debug): print("ramo analizzato:{}".format(branch))
+            if (debug): print("\t\tramo analizzato:{}".format(branch))
             for n in branch:  # per ogni nodo dentro i rami
-                if (debug): print("\tnodo analizzato:{}".format(n))
+                if (debug): print("\t\tnodo analizzato:{}".format(n))
                 sonBranch.extend(hisSon(G, n[1], n[0]))  # i figli dei nodi meno il loro padre
             if (len(sonBranch) != 0): sonNewLevel.append(sonBranch)
-        if (debug): print("il nuovo livello che verrà aggiunto sarà:\n{}".format(sonNewLevel))
-        if (debug): print(("dimensione livello:{}".format(len(sonNewLevel))))
+        if (debug): print("\til nuovo livello che verrà aggiunto sarà:\n{}".format(sonNewLevel))
+        if (debug): print(("\tdimensione livello:{}".format(len(sonNewLevel))))
         sonLevel = sonNewLevel
     if (debug): print("numero percorsi finali:{}".format(count))
     return count
