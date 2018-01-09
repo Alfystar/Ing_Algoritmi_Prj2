@@ -11,8 +11,10 @@ def mostNodes(grafo):
     maxMed = [[None, 0]]
     for node in listNode:
         if len(grafo.getAdj(node.id)) == 1:
+            print("dentro if per nodo {}".format(node.id))
             continue
         else:
+            print("dentro else per nodo {}".format(node.id))
             med = medNode(grafo, node)
             maxMed = findBetterNode(med, node, maxMed)
     return maxMed
@@ -32,6 +34,7 @@ def findBetterNode(numMed, node, savedNode):
 
 if __name__ == '__main__':
     g = mkGraph(20, "rand", 5)
+    g.print()
     listaNodi = mostNodes(g)
 
     print("Nodo/i medi per piu' volte:\n")
