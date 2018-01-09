@@ -1,7 +1,5 @@
 from random import randint as rInt
-
 from graph.Graph_AdjacencyList import *
-# from priorityQueue.PQbinomialHeap import PQbinomialHeap
 from stack.Stack import PilaArrayList as stack
 from queue.Queue import CodaArrayList_deque as queue
 
@@ -10,7 +8,7 @@ def mkGraph(elem, mod="rand", son = 5):
     """
     :param mod: modalita: "rand", "star", "linear", "fractal"
     :param elem: numero massimo di elementi da aggiungere
-    :param son: numero di figli, nel caso random il massimo possibile
+    :param son: numero di figli, al massimo per rand, fissi per fractal
     :return: grafico sotto forma di lista di adiacenza
     """
     newGr = GraphAdjacencyList()
@@ -34,7 +32,6 @@ def mkGraph(elem, mod="rand", son = 5):
 def randomGraph(G, fN, elemLimit, sonLimit):
     """
     :param G: grafo
-    :param fN: firstNode
     :param elemLimit:
     :param sonLimit:
     :return:
