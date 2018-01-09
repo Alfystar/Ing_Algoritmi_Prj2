@@ -6,13 +6,15 @@ from queue.Queue import CodaArrayList_deque as queue
 
 def mkGraph(elem, mod="rand", son = 5):
     """
-    :param mod: modalita: "rand", "star", "linear", "fractal"
-    :param elem: numero massimo di elementi da aggiungere
-    :param son: numero di figli, al massimo per rand, fissi per fractal
+    Chiama le funzioni che creano il grafo; di default mod="rand" e son=5.
+
+    :param elem: numero massimo di elementi da aggiungere al grafo
+    :param mod: modalità: "rand", "star", "linear", "fractal"
+    :param son: numero massimo di figli per nodo, al massimo per rand, fissato per fractal
     :return: grafico sotto forma di lista di adiacenza
     """
     newGr = GraphAdjacencyList()
-    firstNode = newGr.addNode(rInt(-10, 10))  # nodo con valore casuale
+    firstNode = newGr.addNode(rInt(-10, 10))  #nodo con valore casuale
 
     if mod == "rand":
         randomGraph(newGr, firstNode, elem, son)
@@ -31,9 +33,14 @@ def mkGraph(elem, mod="rand", son = 5):
 
 def randomGraph(G, fN, elemLimit, sonLimit):
     """
-    :param G: grafo
-    :param elemLimit:
-    :param sonLimit:
+    Crea una pila che all'inizio contiene solo fN, e gli collega altri nodi in numero variabile. Questi saranno poi
+    i punti di partenza per generarne altri, finchè non viene raggiunto elemLimit. Il comando "del pila" serve per
+    deallocare lo spazio precedentemente occupato dalla pila.
+
+    :param G: grafo contenente fN
+    :param fN: è il fistNode creato in mkGraph
+    :param elemLimit: numero massimo di elementi da aggiungere al grafo, è lo stesso di mkGraph
+    :param sonLimit: numero massimo di figli per nodo, è lo stesso di mkGraph
     :return:
     """
     pila = stack()
@@ -54,9 +61,11 @@ def randomGraph(G, fN, elemLimit, sonLimit):
 
 def starGraph(G, fN, elemLimit):
     """
-    :param G:
-    :param fN: firstNode
-    :param elemLimit:
+    Genera tanti nodi che, con la funzione notOriented, saranno collegati a firstNode.
+
+    :param G: grafo contenente fN
+    :param fN: è il fistNode creato in mkGraph
+    :param elemLimit: numero massimo di elementi da aggiungere al grafo, è lo stesso di mkGraph
     :return:
     """
     node = fN
@@ -66,9 +75,11 @@ def starGraph(G, fN, elemLimit):
 
 def linearGraph(G, fN, elemLimit):
     """
-    :param G:
-    :param fN: firstNode
-    :param elemLimit:
+    Genera un grafo lineare.
+
+    :param G: grafo contenente fN
+    :param fN: è il firstNode creato in mkGraph
+    :param elemLimit: numero massimo di elementi da aggiungere al grafo, è lo stesso di mkGraph
     :return:
     """
     node = fN
@@ -80,10 +91,14 @@ def linearGraph(G, fN, elemLimit):
 
 def fractalGraph(G, fN, elemLimit, sonLimit):
     """
-    :param G: grafo
-    :param fN: firstNode
-    :param elemLimit:
-    :param sonLimit:
+    Crea una coda che inizialmente contiene solo fN, e poi aggiunge i figli nel numero stabilito da sonLimit ad
+    ogni nodo, come per un d-Heap. Se elemLimit-count (gli elementi rimanenti da inserire nel grafo) è minore di
+    sonLimit, allora l'inserimento dei nodi nel grafo si ferma all'iterazione precedente.
+
+    :param G: grafo contenente fN
+    :param fN: è il firstNode creato in mkGraph
+    :param elemLimit: numero massimo di elementi da aggiungere al grafo, è lo stesso di mkGraph
+    :param sonLimit: numero massimo di figli per nodo, è lo stesso di mkGraph
     :return:
     """
     coda = queue()
@@ -105,6 +120,8 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
 
 def notOriented(g, n1, n2):
     """
+    Crea due archi per collegare n1 ed n2 tramite liste di adiacenza.
+
     :param g: grafo
     :param n1: nodo 1
     :param n2: nodo 2
