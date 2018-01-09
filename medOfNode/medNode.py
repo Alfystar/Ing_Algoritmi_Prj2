@@ -1,25 +1,43 @@
 from makeGraph.creaGrafo import mkGraph
 
-debug = False
+debug = False #debug è una variabile inizializzata a False per non far comparire tutti i print successivi
 
 
 def medNode(G, node):
-    sonLevel = G.getAdjList(node.id)  # lista contenente i figli
+    """
+    Funzione che, dato un nodo, calcola per quante coppie esso è medio nel grafo cui appartiene.
+
+    NB: Il numero di rami del primo livello non può mai aumentare, ma solo ridursi nei successivi passaggi.
+    :param G: grafo
+    :param node: nodo
+    :return: numero di volte che node è medio in G
+
+    """
+    sonLevel = G.getAdjList(node.id)  # lista contenente i figli di un certo livello
     if (debug): print("figli nel primo passo:{}".format(sonLevel))
     count = 0
-    while (len(sonLevel) >= 2):  # procedo finche almeno 2 rami del nodo origine hanno dei figli
-        count += pathsCountLevel(sonLevel)  # ottengo le coppie per questo livello(
+
+    #finchè almeno 2 rami del nodo d'origine hanno figli, conto le coppie possibili per questo livello
+    while (len(sonLevel) >= 2):
+        count += pathsCountLevel(sonLevel)
         if (debug): print("\tpercorsi trovati:{}".format(count))
+
         sonNewLevel = []
-        for branch in sonLevel:  # per ogni ramo(i discendenti dei primi figli)
+        for branch in sonLevel:  # per ogni ramo(quindi per il nuovo livello) creo una lista vuota
             sonBranch = []
             if (debug): print("\t\tramo analizzato:{}".format(branch))
-            for n in branch:  # per ogni nodo dentro i rami
+
+            #per ogni nodo dentro i rami, metto nella lista i figli del nuovo livello, ed elimino il padre
+            for n in branch:
                 if (debug): print("\t\tnodo analizzato:{}".format(n))
-                sonBranch.extend(hisSon(G, n[1], n[0]))  # i figli dei nodi meno il loro padre
+                sonBranch.extend(hisSon(G, n[1], n[0]))
+
+            # tengo solo le liste non vuote, cioè i figli del nuovo livello.
+            #elimino i rami composti da foglie.
             if (len(sonBranch) != 0): sonNewLevel.append(sonBranch)
         if (debug): print("\til nuovo livello che verrà aggiunto sarà:\n{}".format(sonNewLevel))
         if (debug): print(("\tdimensione livello:{}".format(len(sonNewLevel))))
+
         sonLevel = sonNewLevel
     if (debug): print("numero percorsi finali:{}".format(count))
     return count
@@ -27,12 +45,14 @@ def medNode(G, node):
 
 def hisSon(G, nodeDadId, nodeId):
     """
-    Funzione che ritorna tutti i filgli di un nodo sapendo chi era suo padre
-    e quindi evitando di riprenderlo
+    Funzione che ritorna tutti i figli di un nodo, sapendo chi era suo padre. In questo modo si evita di tornare sul
+    nodo padre.
+
     :param G: grafo
-    :param nodeDad: padre del nodo di cui sapere figli
-    :param node: nodo per i quali siamo interessati ad avere i figli
-    :return: ramo, con dentro i nodi e loro padre: [[idNodi figli,idNodo padre],altri son....]  nella lista è escluso il padre
+    :param nodeDadId: padre del nodo di cui vogliamo conoscere i figli
+    :param node: nodo di cui vogliamo conoscere i figli
+    :return: una lista di liste di nodi appartenenti al livello successivo di nodeId, che conserva nodeId come padre:
+            [[idNodi figli,idNodo padre],altri son....]  nella lista è escluso nodeDadId.
     """
     son = G.getAdj(nodeId, nodeDadId)
     return son
