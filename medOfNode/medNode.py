@@ -1,6 +1,6 @@
 from makeGraph.creaGrafo import mkGraph
 
-debug = False #debug è una variabile inizializzata a False per non far comparire tutti i print successivi
+debug = False  # debug è una variabile inizializzata a False per non far comparire tutti i print successivi
 
 
 def medNode(G, node):
@@ -17,7 +17,7 @@ def medNode(G, node):
     if (debug): print("figli nel primo passo:{}".format(sonLevel))
     count = 0
 
-    #finchè almeno 2 rami del nodo d'origine hanno figli, conto le coppie possibili per questo livello
+    # finchè almeno 2 rami del nodo d'origine hanno figli, conto le coppie possibili per questo livello
     while (len(sonLevel) >= 2):
         count += pathsCountLevel(sonLevel)
         if (debug): print("\tpercorsi trovati:{}".format(count))
@@ -27,13 +27,13 @@ def medNode(G, node):
             sonBranch = []
             if (debug): print("\t\tramo analizzato:{}".format(branch))
 
-            #per ogni nodo dentro i rami, metto nella lista i figli del nuovo livello, ed elimino il padre
+            # per ogni nodo dentro i rami, metto nella lista i figli del nuovo livello, ed elimino il padre
             for n in branch:
                 if (debug): print("\t\tnodo analizzato:{}".format(n))
                 sonBranch.extend(hisSon(G, n[1], n[0]))
 
             # tengo solo le liste non vuote, cioè i figli del nuovo livello.
-            #elimino i rami composti da foglie.
+            # elimino i rami composti da foglie.
             if (len(sonBranch) != 0): sonNewLevel.append(sonBranch)
         if (debug): print("\til nuovo livello che verrà aggiunto sarà:\n{}".format(sonNewLevel))
         if (debug): print(("\tdimensione livello:{}".format(len(sonNewLevel))))
@@ -60,26 +60,32 @@ def hisSon(G, nodeDadId, nodeId):
 
 def pathsCountLevel(sonLevel):
     """
-    funzione che calcola per un certo livello quanti cammini non doppi si possono fare
-    che passano per il nodo originale NODE
-    :param sonLevel: lista di lista dove ogni lista contiene ramo discendenti dei primi figli di NODE, NESSUNA LISTA VUOTA
-    :return: numero di percorsi
+    Funzione che calcola i cammini possibili ad un certo livello che passano per il nodo originale NODE, moltiplicando
+    la lunghezza delle sottoliste secondo la formula:
+    len(ramo[k])*((somma di tutti i nodi di un livello)-len(ramo[k])).
+
+    :param sonLevel: è un livello rappresentato con lista di liste, dove ogni lista contiene un ramo, e nessuna lista è vuota
+    :return: cammini possibili al livello sonLevel
     """
     if (debug): print("conta dei percorsi tra:{}".format(sonLevel))
-    count = 0
+    path = 0
     allNode = 0
-    for branch in sonLevel:  # per ogni ramo
+
+    # per ogni ramo conto il numero di nodi presenti in sonLevel; dunque ottengo il numero totale di nodi a quel livello
+    for branch in sonLevel:
         if (debug): print("\tramo:{}".format(branch))
         allNode += len(branch)
 
     if (debug): print("\tnodi totali presenti:{}".format(allNode))
 
+    # applico la formula per calcolare i cammini possibili al livello sonLevel
     for branch in sonLevel:
         if (debug): print("\tramo:{}".format(branch))
-        count += len(branch) * (allNode - len(branch))
+        path += len(branch) * (allNode - len(branch))
         allNode -= len(branch)
-    if (debug): print("\tpercorsi contati:{}".format(count))
-    return count
+    if (debug): print("\tpercorsi contati:{}".format(path))
+
+    return path
 
 
 if __name__ == '__main__':
