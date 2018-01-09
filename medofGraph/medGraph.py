@@ -1,6 +1,8 @@
 from makeGraph.creaGrafo import mkGraph
 from medOfNode.medNode import medNode
 
+debug = False
+
 
 def mostNodes(grafo):
     """
@@ -11,10 +13,10 @@ def mostNodes(grafo):
     maxMed = [[None, 0]]
     for node in listNode:
         if len(grafo.getAdj(node.id)) == 1:
-            print("dentro if per nodo {}".format(node.id))
+            if (debug): print("dentro if per nodo {}".format(node.id))
             continue
         else:
-            print("dentro else per nodo {}".format(node.id))
+            if (debug): print("dentro else per nodo {}".format(node.id))
             med = medNode(grafo, node)
             maxMed = findBetterNode(med, node, maxMed)
     return maxMed
