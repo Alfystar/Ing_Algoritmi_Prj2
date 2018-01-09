@@ -105,7 +105,7 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
     coda.enqueue(fN)
 
     count = 1
-    while (count <= elemLimit-1) and (elemLimit-count >= sonLimit):
+    while (count <= elemLimit-1): #and (elemLimit-count >= sonLimit):
         if (not coda.isEmpty()):
             node = coda.dequeue()  # prendo nodo già inserito
         for k in range(sonLimit):  # gli aggiungo un numero definito di figli
@@ -141,5 +141,5 @@ if __name__ == '__main__':
     g3 = mkGraph(20, "linear")
     g3.print()
     print('')
-    g4 = mkGraph(22, "fractal", 3)
+    g4 = mkGraph(20, "fractal", 3)
     g4.print()
