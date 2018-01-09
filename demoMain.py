@@ -1,4 +1,4 @@
-import cProfile
+﻿import cProfile
 from medofGraph.medGraph import mostNodes
 from makeGraph.creaGrafo import mkGraph
 
