@@ -35,10 +35,12 @@ def findBetterNode(numMed, node, savedNode):
 
 
 if __name__ == '__main__':
-    #g = mkGraph(20, "rand", 5)
-    g = mkGraph(20, "linear")
-    g = mkGraph(20, "linear")
-    g.print()
+    g = mkGraph(2000, "rand", 500)
+    #g = mkGraph(2000, "star")
+    #g = mkGraph(2000, "linear")
+    # g = mkGraph(2000, "fractal", 5)
+    #print("created\n")
+    #g.print()
     listaNodi = mostNodes(g)
 
     print("Nodo/i medi per piu' volte:\n")
