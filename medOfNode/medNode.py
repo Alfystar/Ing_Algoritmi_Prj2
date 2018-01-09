@@ -4,30 +4,31 @@ if __name__ == '__main__':
 
 def medNode(G, node):
     sonBranch = G.getAdjList(node.id)  # lista contenente i figli
-    #listNode = G.getNodes()
+    # listNode = G.getNodes()
     print("figli nel primo livello:[{}".format(sonBranch))
     count = 0
-    ramo=[]
-    while(len(sonBranch)>=2):          #procedo finche almeno 2 rami del nodo origine hanno dei figli
-        count += pathsCountLevel(sonBranch) #ottengo le coppie per questo livello
-        for i in range(len(sonBranch)): #ottengo il nuovo livello da calcolare
-            ramo=(sonBranch.pop())
-            newSonBranch=[]
+    ramo = []
+    while (len(sonBranch) >= 2):  # procedo finche almeno 2 rami del nodo origine hanno dei figli
+        count += pathsCountLevel(sonBranch)  # ottengo le coppie per questo livello
+        for i in range(len(sonBranch)):  # ottengo il nuovo livello da calcolare
+            ramo = (sonBranch.pop())
+            newSonBranch = []
             idDad = ramo[i]
             for i in range(len(ramo)):
-                newSonBranch.extend(hisSon(G,idDad,ramo[i]))
+                newSonBranch.extend(hisSon(G, idDad, ramo[i]))
 
     print("numero percorsi:{}".format(count))
 
     return count
 
-def sonNextLevel(G,ramiAttuali)
+
+def sonNextLevel(G, ramiAttuali, padriRamiAttuali):
 
 
 # hisSon(G, listNode[0], listNode[1])
 
 
-def hisSon(G,nodeDad,node):
+def hisSon(G, nodeDad, node):
     """
     Funzione che ritorna tutti i filgli di un nodo sapendo chi era suo padre
     e quindi evitando di riprenderlo
@@ -36,8 +37,8 @@ def hisSon(G,nodeDad,node):
     :param node: nodo per i quali siamo interessati ad avere i figli
     :return: lista dei suoi nodi figli(sotto forma di id) eslusi suo padre
     """
-    son=G.getAdj(node.id,nodeDad.id)
-    #print("figli del nodo {} provenienti dal nodo {} sono:{}".format(node.id,nodeDad.id,son))
+    son = G.getAdj(node.id, nodeDad.id)
+    # print("figli del nodo {} provenienti dal nodo {} sono:{}".format(node.id,nodeDad.id,son))
     return son
 
 
