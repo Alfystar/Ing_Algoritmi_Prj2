@@ -174,7 +174,7 @@ class GraphAdjacencyList(GraphBase):
         result = []
         curr = self.adj[nodeId].getFirstRecord()
         while curr is not None:
-            if (exludeNodeId != curr.elem): result.append(curr.elem)    #aggiungo tutto fuorchè il nodo escluso
+            if (exludeNodeId != curr.elem): result.append(curr.elem)  # aggiungo tutto fuorchè il nodo escluso
             curr = curr.next
         return result
 

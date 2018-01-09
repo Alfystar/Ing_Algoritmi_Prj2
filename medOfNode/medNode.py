@@ -1,5 +1,4 @@
-if __name__ == '__main__':
-    from makeGraph.creaGrafo import mkGraph
+from makeGraph.creaGrafo import mkGraph
 
 
 def medNode(G, node):
