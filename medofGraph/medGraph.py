@@ -25,7 +25,7 @@ def findBetterNode(numMed, node, savedNode):
     :param numMed:
     :return:
     """
-    if savedNode[0][0] == None or savedNode[0][1] < numMed:
+    if (type(savedNode[0][0]) == None or savedNode[0][1] < numMed):
         savedNode = [[node, numMed]]
     elif savedNode[0][1] == numMed:
         savedNode.append([node, numMed])
