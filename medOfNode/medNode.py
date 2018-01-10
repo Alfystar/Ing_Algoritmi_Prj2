@@ -2,7 +2,7 @@ from makeGraph.creaGrafo import mkGraph
 
 debug = False  # debug è una variabile inizializzata a False per non far comparire tutti i print successivi
 
-
+#@profile
 def medNode(G, node):
     """
     Funzione che, dato un nodo, calcola per quante coppie esso è medio nel grafo cui appartiene.
@@ -35,10 +35,12 @@ def medNode(G, node):
             # tengo solo le liste non vuote, cioè i figli del nuovo livello.
             # elimino i rami composti da foglie.
             if (len(sonBranch) != 0): sonNewLevel.append(sonBranch)
+            del sonBranch
         if (debug): print("\til nuovo livello che verrà aggiunto sarà:\n{}".format(sonNewLevel))
         if (debug): print(("\tdimensione livello:{}".format(len(sonNewLevel))))
 
         sonLevel = sonNewLevel
+        del sonNewLevel
     if (debug): print("numero percorsi finali:{}".format(count))
     return count
 
@@ -90,7 +92,7 @@ def pathsCountLevel(sonLevel):
 
 if __name__ == '__main__':
     if (debug): print("funzione per trovare quante volte il nodo n è medio in G")
-    i = mkGraph(7, "fractal", 2)
+    i = mkGraph(5000, "rand", 10)
     listNode = i.getNodes()
     i.print()
     print(

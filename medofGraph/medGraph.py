@@ -1,9 +1,9 @@
-from makeGraph.creaGrafo import mkGraph
+﻿from makeGraph.creaGrafo import mkGraph
 from medOfNode.medNode import medNode
 
 debug = False
 
-
+#@profile
 def mostNodes(grafo):
     """
     :param grafo:
@@ -21,7 +21,7 @@ def mostNodes(grafo):
             maxMed = findBetterNode(med, node, maxMed)
     return maxMed
 
-
+#@profile
 def findBetterNode(numMed, node, savedNode):
     """
     :param numMed:
