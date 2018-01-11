@@ -1,6 +1,7 @@
 from medofGraph.medGraph import mostNodes
 from makeGraph.creaGrafo import mkGraph
 import sys
+import time
 #from memory_profiler import profile
 
 #@profile(precision=8)
@@ -40,12 +41,15 @@ def main ():
             exit(-1)
         g = mkGraph(int(cmd[3]), "rand2")
 
+    t=time.time()
     listaMedi=mostNodes(g)
+    elapsed=time.time()-t
     if(bool(int(cmd[2]))):
         print("Nella forma {} i nodi medi di più percorsi sono:".format(cmd[1]))
         for elem in listaMedi:
             print("\tNodo {} medio per {} volte.".format(elem[0].id, elem[1]))
     del g
+    print("{} {}".format(int(cmd[3]),elapsed))  #output per creare grafici
 
 def helpPrint():
     print("Le possibili modalità di uso sono:")
