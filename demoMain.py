@@ -49,7 +49,7 @@ def main ():
         for elem in listaMedi:
             print("\tNodo {} medio per {} volte.".format(elem[0].id, elem[1]))
     del g
-    print("{} {}".format(int(cmd[3]),elapsed))  #output per creare grafici
+    print("{}\t{}".format(int(cmd[3]),elapsed))  #output per creare grafici
 
 def helpPrint():
     print("Le possibili modalità di uso sono:")
