@@ -19,7 +19,17 @@ class GraphAdjacencyList(GraphBase):
         """
         super().__init__()
         self.adj = {}  # adjacency lists {nodeID:listOfAdjacentNodes}
-
+    """
+    def __del__(self):  #ACB
+        for n in self.getNodes():
+            self.deleteNode(n.id)
+        self.adj.clear()
+        del self.adj
+        self.nodes.clear()  # dictionary {nodeId: node}
+        del self.nodes
+        del self.nextId  # the next node ID to be assigned
+        del self
+    """
     def numEdges(self):
         """
         Return the number of edges.

@@ -1,8 +1,9 @@
 from medofGraph.medGraph import mostNodes
 from makeGraph.creaGrafo import mkGraph
 import sys
+#from memory_profiler import profile
 
-#@profile
+#@profile(precision=8)
 def main ():
     cmd=sys.argv
     if(len(cmd)==1):
@@ -41,7 +42,7 @@ def main ():
 
     listaMedi=mostNodes(g)
     if(bool(int(cmd[2]))):
-        print("Nodi medi per piu' volte:")
+        print("Nella forma {} i nodi medi di più percorsi sono:".format(cmd[1]))
         for elem in listaMedi:
             print("\tNodo {} medio per {} volte.".format(elem[0].id, elem[1]))
     del g
@@ -54,7 +55,6 @@ def helpPrint():
     print(("Stella:\t\t\t\t\tstar <OutputPrint 1/0> <nElem>"))
     print(("Random Puro:\t\t\t\trand2 <OutputPrint 1/0> <nElem>"))
     print("\n\nIn caso di dubbi chiamare la funzione senza parametri, o con h, o con help")
-
 
 
 if __name__ == '__main__':

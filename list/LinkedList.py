@@ -12,7 +12,12 @@ class ListaCollegata:
     def __init__(self):
         self.first = None
         self.last = None
-        
+
+    def __del__(self):  #ACB
+        del self.first
+        del self.last
+        del self
+
     def isEmpty(self):
         return self.first is None
     

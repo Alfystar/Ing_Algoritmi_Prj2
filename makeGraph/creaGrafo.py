@@ -1,7 +1,13 @@
 from random import randint as rInt
-from graph.Graph_AdjacencyList import *
-from stack.Stack import PilaArrayList as stack
-from queue.Queue import CodaArrayList_deque as queue
+#from memory_profiler import profile
+if __name__ == '__main__':
+    from graph.Graph_AdjacencyList import *
+    from stack.Stack import PilaArrayList as stack
+    from queue.Queue import CodaArrayList_deque as queue
+else:
+    from graph.Graph_AdjacencyList import *
+    from stack.Stack import PilaArrayList as stack
+    from queue.Queue import CodaArrayList_deque as queue
 
 
 def mkGraph(elem, mod="rand", son = 5):
@@ -33,7 +39,7 @@ def mkGraph(elem, mod="rand", son = 5):
 
     return newGr
 
-
+#@profile(precision=6)
 def randomGraph(G, fN, elemLimit, sonLimit):
     """
     Crea una pila che all'inizio contiene solo fN, e gli collega altri nodi in numero variabile. Questi saranno poi
@@ -62,6 +68,7 @@ def randomGraph(G, fN, elemLimit, sonLimit):
             count += 1  # tengo traccia dell'aumento dei nodi
     del pila  # eliminiamo la pila
 
+#@profile(precision=6)
 def starGraph(G, fN, elemLimit):
     """
     Genera tanti nodi che, con la funzione notOriented, saranno collegati a firstNode.
@@ -76,6 +83,7 @@ def starGraph(G, fN, elemLimit):
         son = G.addNode(rInt(-10, 10))
         notOriented(G, node, son)
 
+#@profile(precision=6)
 def linearGraph(G, fN, elemLimit):
     """
     Genera un grafo lineare.
@@ -92,6 +100,7 @@ def linearGraph(G, fN, elemLimit):
         notOriented(G, node, son)
         node = son
 
+#@profile(precision=6)
 def fractalGraph(G, fN, elemLimit, sonLimit):
     """
     Crea una coda che inizialmente contiene solo fN, e poi aggiunge i figli nel numero stabilito da sonLimit ad
@@ -120,7 +129,7 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
             count += 1  # tengo traccia dell'aumento dei nodi
     del coda  # eliminiamo la coda
 
-
+#@profile(precision=6)
 def randomGraph2(G,elemLimit):
     """
     Genera un grafo in maniera random. Il comando "del l" finale serve a deallocare lo spazio precedentemente occupato
@@ -143,7 +152,6 @@ def randomGraph2(G,elemLimit):
         count += 1
     del l
 
-
 def notOriented(g, n1, n2):
     """
     Crea due archi per collegare n1 ed n2 tramite liste di adiacenza.
@@ -155,7 +163,6 @@ def notOriented(g, n1, n2):
     """
     g.insertEdge(n1.id, n2.id)
     g.insertEdge(n2.id, n1.id)
-
 
 if __name__ == '__main__':
     print("random v1")
@@ -172,4 +179,4 @@ if __name__ == '__main__':
     g4.print()
     print("random v2")
     g5 = mkGraph(20, "rand2")
-    #g5.print()
+    g5.print()

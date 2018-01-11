@@ -12,6 +12,11 @@ class Node:
         self.id = id
         self.value = value
 
+    def __del__(self):      #ACB
+        del self.id
+        del self.value
+        del self
+
     def __eq__(self, other):
         """
         Equality operator.
