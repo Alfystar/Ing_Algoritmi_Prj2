@@ -10,12 +10,14 @@ echo eseguo lo script:
 
 #./runAndData.sh  $1 0 $2 $3 $4
 
-echo Modalità "$1" > $3/"$1"Time.t 	#svuoto il file che conterrà i tempi
+echo Modalità "$1" > $3/"$1"Time.dat 	#svuoto il file che conterrà i tempi
+echo "nElem, Time(s)" >> $3/"$1"Time.dat 	#creo nomi colonne
 echo "<#>./serialRun $1 $2 $3 $4">>$3/logAction.log
 for i in $(seq $2);
 do
-	./runAndData.sh  $1 0 $((100*$((2**$i)))) $3 $4
+	./runAndData.sh  $1 0 $((200*$i)) $3 $4
 	echo fatto "$i"
-	echo $(date) "iterazione $i" $'\n\t' "./runAndData.sh  $1 0 $((100*$((2**$i)))) $3 $4">>$3/logAction.log
+	echo $(date) "iterazione $i" $'\n\t' "./runAndData.sh  $1 0 $((200*$i)) $3 $4">>$3/logAction.log
+
 done
-echo ----------------------------------------------------------------------------------------------------------------------->>$3/logAction.log
+echo ------------------------------------------------------------------------------------------------------->>$3/logAction.log
