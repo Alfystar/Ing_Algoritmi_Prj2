@@ -16,4 +16,3 @@ echo  "parametri passati: ""nElem=" $3 " sonNumber="$5 " OutDir=" $4" OuputData=
 python3 -m cProfile -o $4/cProfile/"$1"x"$3"elemTest.o demoMain.py $1 $2 $3 $5 >>$4/"$1"Time.dat	#creo tanti cProfile diversi, ma 1 soo file con i tempi
 echo progamma eseguito
 python3 profileShow.py $4/cProfile/"$1"x"$3"elemTest.o cumtime >$4/cProfile/"$1"x"$3"elemTest.dat
-ps
