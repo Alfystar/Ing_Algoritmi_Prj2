@@ -5,7 +5,8 @@ x:marta emanuele e filippo
 Per runnare il progamma bash che esegue e salva in automatico i dati:
 
 1) ./runAndData.sh >forma< >output del medio< >nElem> >OutFileDir> >son< >outDircProfile< 
-2) ./serialRun.sh >forma<  >quanto volte fare *100<  >OutFileDir<  >son< 
+2) ./serialRun.sh >forma<  >nIteration(100*n)<  >OutFileDir<  >son< 
+3) ./esecuzioniForme.sh >OutFileDir< >nIteration(100*n)<
 
 
 
