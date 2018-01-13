@@ -1,7 +1,7 @@
-#!/bin/bash
+﻿#!/bin/bash
 #argomeni da passare:
 # arg1= linear,star,fractal,rand2,rand
-# arg2= quante volte aumento di 100 il numero di elementi partendo da 100
+# arg2= quante volte aumento di 50 il numero di elementi partendo da 50
 # arg3= OutFileDir
 # arg4= son (se la modalità la prevede ma non chiama errore)
 
@@ -25,7 +25,7 @@ echo "nElem, Time(s)" >> $3/"$1$out"  	#creo nomi colonne
 echo "<#>./serialRun $1 $2 $3 $4">>$3/logAction.log
 for i in $(seq $2);
 do
-	nElem=$((100*$i))
+	nElem=$((50*$i))
 	./runAndData.sh  $1 0 $nElem $3 $4 $out
 	echo fatto "$i"
 	echo $(date) "iterazione $i" $'\n\t' "./runAndData.sh  $1 0 $nElem $3 $4">>$3/logAction.log

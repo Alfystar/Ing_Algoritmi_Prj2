@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 #argomeni da passare:
 # arg1= linear,star,fractal,rand2,rand
 # arg2= 1/0 (output medio)
