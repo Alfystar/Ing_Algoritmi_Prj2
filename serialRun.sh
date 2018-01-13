@@ -6,7 +6,7 @@
 # arg4= son (se la modalità la prevede ma non chiama errore)
 
 echo eseguo lo script Serial Run per la forma $1, fino a $(($2*200)) Elementi.
-#./runAndData.sh  <forma> <output del medio> <nElem> <OutFileDir> <son> <outDir>
+#./runAndData.sh  <forma> <output del medio> <nElem> <OutFileDir> <son> <outDircProfile>
 #MEMO  ./runAndData.sh  $1 0 $2 $3 $4
 
 
