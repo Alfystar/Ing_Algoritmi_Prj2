@@ -18,12 +18,12 @@ def medNode(G, node):
     """
     sonLevel = G.getAdjList(node.id)  # lista contenente i figli di un certo livello
     if (debug): print("figli nel primo passo:{}".format(sonLevel))
-    count = 0
+    medOfPaths = 0
 
     # finchè almeno 2 rami del nodo d'origine hanno figli, conto le coppie possibili per questo livello
     while (len(sonLevel) >= 2):
-        count += pathsCountLevel(sonLevel)
-        if (debug): print("\tpercorsi trovati:{}".format(count))
+        medOfPaths += pathsCountLevel(sonLevel)
+        if (debug): print("\tpercorsi trovati:{}".format(medOfPaths))
 
         sonNewLevel = []
         for branch in sonLevel:  # per ogni ramo(quindi per il nuovo livello) creo una lista vuota
@@ -44,8 +44,8 @@ def medNode(G, node):
 
         sonLevel = sonNewLevel
         del sonNewLevel
-    if (debug): print("numero percorsi finali:{}".format(count))
-    return count
+    if (debug): print("numero percorsi finali:{}".format(medOfPaths))
+    return medOfPaths
 
 
 def hisSon(G, nodeDadId, nodeId):
