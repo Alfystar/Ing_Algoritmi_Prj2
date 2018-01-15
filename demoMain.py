@@ -13,43 +13,47 @@ def main ():
     if (cmd[1] == "h" or cmd[1]=="help"):
         helpPrint()
         exit(-1)
-    if (cmd[1] == "rand"):
+    elif (cmd[1] == "rand"):
         if (len(cmd) < 5):
             print("!!!!ERROR!!! correct sintax for Random is:\n<Modalità><OutputPrint 1/0><nElem><nMaxSon>")
             exit(-1)
         g = mkGraph(int(cmd[3]), "rand")
-    if (cmd[1] == "fractal"):
+    elif (cmd[1] == "fractal"):
         if (len(cmd) < 5):
             print("!!!!ERROR!!! correct sintax for fractal is:\n<Modalità><OutputPrint 1/0><nElem><d-son>")
             print("\nLa corretta sintassi è:")
             helpPrint()
             exit(-1)
         g = mkGraph(int(cmd[3]), "fractal", int(cmd[4]))
-    if (cmd[1] == "star"):
+    elif (cmd[1] == "star"):
         if (len(cmd) < 4):
             print("!!!!ERROR!!! correct sintax for Star is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
         g = mkGraph(int(cmd[3]), "star")
-    if (cmd[1] == "linear"):
+    elif (cmd[1] == "linear"):
         if (len(cmd) < 4):
             print("!!!!ERROR!!! correct sintax for Linear is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
         g = mkGraph(int(cmd[3]), "linear")
-    if (cmd[1] == "sfilacciatoRand"):
+    elif (cmd[1] == "sfilacciatoRand"):
         if (len(cmd) < 4):
             print("!!!!ERROR!!! correct sintax for sfilacciatoRand is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
         g = mkGraph(int(cmd[3]), "sfilacciatoRand",int(cmd[4]))
-    if (cmd[1] == "sfilacciato"):
+    elif (cmd[1] == "sfilacciato"):
         if (len(cmd) < 4):
             print("!!!!ERROR!!! correct sintax for sfilacciato is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
         g = mkGraph(int(cmd[3]), "sfilacciato",int(cmd[4]))
-    if (cmd[1] == "asterisco"):
+    elif (cmd[1] == "asterisco"):
         if (len(cmd) < 4):
             print("!!!!ERROR!!! correct sintax for asterisk is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
         g = mkGraph(int(cmd[3]), "asterisco",int(cmd[4]))
+    else:
+        print("SINTASSI IRRICONOSCIBILE RICEVUTO:\n\t{}".format(cmd[1:]))
+        helpPrint()
+        exit(-1)
 
     t=time.time()
     listaMedi=mostNodes(g)
