@@ -253,5 +253,5 @@ if __name__ == '__main__':
     g6 = mkGraph(20, "sfilacciato",3)
     g6.print()
     print("\n\tasterisco")
-    g7 = mkGraph(20, "asterisco", 5)
+    g7 = mkGraph(20, "asterisk", 5)
     g7.print()

@@ -39,13 +39,17 @@ def main ():
         if (len(cmd) < 4):
             print("!!!!ERROR!!! correct sintax for sfilacciatoRand is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
-        g = mkGraph(int(cmd[3]), "sfilacciatoRand")
+        g = mkGraph(int(cmd[3]), "sfilacciatoRand",int(cmd[4]))
     if (cmd[1] == "sfilacciato"):
         if (len(cmd) < 4):
             print("!!!!ERROR!!! correct sintax for sfilacciato is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
-        g = mkGraph(int(cmd[3]), "sfilacciato")
-
+        g = mkGraph(int(cmd[3]), "sfilacciato",int(cmd[4]))
+    if (cmd[1] == "asterisk"):
+        if (len(cmd) < 4):
+            print("!!!!ERROR!!! correct sintax for asterisk is:\n<Modalità><OutputPrint 1/0><nElem>")
+            exit(-1)
+        g = mkGraph(int(cmd[3]), "asterisk",int(cmd[4]))
 
     t=time.time()
     listaMedi=mostNodes(g)
@@ -67,6 +71,7 @@ def helpPrint():
     print(("Frattale o D-heap:\t\t\tfractal <OutputPrint 1/0> <nElem> <d-son>"))
     print(("Stella:\t\t\t\t\tstar <OutputPrint 1/0> <nElem>"))
     print(("Random Puro:\t\t\t\trand2 <OutputPrint 1/0> <nElem>"))
+    print(("Asterisco:\t\t\t\tasterisk <OutputPrint 1/0> <nElem> <nRami>"))
     print("\n\nIn caso di dubbi chiamare la funzione senza parametri, o con h, o con help")
 
 

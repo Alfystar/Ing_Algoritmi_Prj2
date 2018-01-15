@@ -1,6 +1,6 @@
 ﻿from makeGraph.creaGrafo import mkGraph
 from medOfNode.medNode import medNode
-from memory_profiler import profile
+#from memory_profiler import profile
 
 debug = False
 

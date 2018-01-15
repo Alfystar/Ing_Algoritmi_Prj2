@@ -1,5 +1,5 @@
 from makeGraph.creaGrafo import mkGraph
-from memory_profiler import profile
+#from memory_profiler import profile
 
 debug = False  # debug è una variabile inizializzata a False per non far comparire tutti i print successivi
 #fp=open('memory_profiler.log','w+')
