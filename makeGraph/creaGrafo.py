@@ -15,7 +15,7 @@ def mkGraph(elem, mod="rand", son = 5):
     Chiama le funzioni che creano il grafo; di default mod="rand" e son=5.
 
     :param elem: numero massimo di elementi da aggiungere al grafo
-    :param mod: modalità: "rand", "star", "linear", "fractal"
+    :param mod: modalità: "rand", "star", "linear", "fractal", "sfilacciatoRand", "sfilacciato"
     :param son: numero massimo di figli per nodo, al massimo per rand, fissato per fractal
     :return: grafico sotto forma di lista di adiacenza
     """
