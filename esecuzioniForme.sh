@@ -28,10 +28,10 @@ echo esecuzione per il frattale al 100 figli
 ./serialRun.sh fractal $2 $1 100
 
 echo esecuzione per lo asterisco a 5 figli
-./serialRun.sh asterisk $2 $1 5
+./serialRun.sh asterisco $2 $1 5
 
 echo esecuzione per lo asterisco a 15 figli
-./serialRun.sh asterisk $2 $1 15
+./serialRun.sh asterisco $2 $1 15
 
 echo esecuzione per lo asterisco a 40 figli
-./serialRun.sh asterisk $2 $1 40
+./serialRun.sh asterisco $2 $1 40
