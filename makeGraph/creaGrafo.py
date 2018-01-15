@@ -47,10 +47,14 @@ def mkGraph(elem, mod="rand", son = 5):
 
 def asterisk(G, fN, elemLimit, sonLimit):
     """
-    :param newGr:
-    :param fN:
-    :param elemLimit:
-    :param sonLimit:
+    Creazione di un grafico simile a lineare, ma a partire da un nodo centrale fa partire un numero sonLimit di rami,
+    sempre con un numero globale di elemLimit nodi; la forma variera' tra linear (sL = 2) e star (sL = n-1); per
+    questi casi, preferire gli algoritmi appositamente creati (meno istruzioni --> piu' rapidi).
+
+    :param G: grafo contenente fN
+    :param fN: è il fistNode creato in mkGraph
+    :param elemLimit: numero massimo di elementi da aggiungere al grafo, è lo stesso di mkGraph
+    :param sonLimit: numero rami dipanati dal nodo centrale, è lo stesso di mkGraph
     :return:
     """
     node = fN
@@ -58,6 +62,7 @@ def asterisk(G, fN, elemLimit, sonLimit):
 
     coda = queue()
 
+    # abbozziamo i rami per definire la forma del grafo
     for k in range(sonLimit):
         if sonLimit <= (count -1):
             print("ERROR: not enough elements chosen")
@@ -67,6 +72,7 @@ def asterisk(G, fN, elemLimit, sonLimit):
         coda.enqueue(son)
         count += 1
 
+    # sviluppiamo i rami dei grafi
     while (count <= elemLimit - 1):
         if (not coda.isEmpty()):
             node = coda.dequeue()  # prendo nodo già inserito
