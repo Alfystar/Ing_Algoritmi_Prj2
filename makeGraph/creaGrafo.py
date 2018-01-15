@@ -22,7 +22,7 @@ def mkGraph(elem, mod="rand", son=5):
     """
     newGr = GraphAdjacencyList()
     firstNode = newGr.addNode(rInt(-10, 10))  # nodo con valore casuale
-    newGr.print()
+
     if mod == "asterisco":
         asterisk(newGr, firstNode, elem, son)
 
