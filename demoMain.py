@@ -45,11 +45,11 @@ def main ():
             print("!!!!ERROR!!! correct sintax for sfilacciato is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
         g = mkGraph(int(cmd[3]), "sfilacciato",int(cmd[4]))
-    if (cmd[1] == "asterisk"):
+    if (cmd[1] == "asterisco"):
         if (len(cmd) < 4):
             print("!!!!ERROR!!! correct sintax for asterisk is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
-        g = mkGraph(int(cmd[3]), "asterisk",int(cmd[4]))
+        g = mkGraph(int(cmd[3]), "asterisco",int(cmd[4]))
 
     t=time.time()
     listaMedi=mostNodes(g)

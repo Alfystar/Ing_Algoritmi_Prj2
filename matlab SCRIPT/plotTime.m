@@ -3,17 +3,17 @@ close all;
 
 %%%Carico le varie tabelle
 %%%%asterisko
-filename = 'asteriskSon5_Time.dat';
+filename = 'asteriscoSon5_Time.dat';
 T = readtable(filename);
 global asterisco5
 asterisco5= table2array(T);
 
-filename = 'asteriskSon15_Time.dat';
+filename = 'asteriscoSon15_Time.dat';
 T = readtable(filename);
 global asterisco15
 asterisco15= table2array(T);
 
-filename = 'asteriskSon40_Time.dat';
+filename = 'asteriscoSon40_Time.dat';
 T = readtable(filename);
 global asterisco40
 asterisco40= table2array(T);
