@@ -22,6 +22,9 @@ def mkGraph(elem, mod="rand", son = 5):
     newGr = GraphAdjacencyList()
     firstNode = newGr.addNode(rInt(-10, 10))  #nodo con valore casuale
 
+    if mod == "asterisco":
+        asterisk(newGr,firstNode,elem,son)
+
     if mod == "sfilacciatoRand":
         frayedThreadRand(newGr, firstNode, elem, son)
 
@@ -41,6 +44,37 @@ def mkGraph(elem, mod="rand", son = 5):
         randomGraph(newGr,elem)
 
     return newGr
+
+def asterisk(G, fN, elemLimit, sonLimit):
+    """
+    :param newGr:
+    :param fN:
+    :param elemLimit:
+    :param sonLimit:
+    :return:
+    """
+    node = fN
+    count = 1
+
+    coda = queue()
+
+    for k in range(sonLimit):
+        if sonLimit <= (count -1):
+            print("ERROR: not enough elements chosen")
+            return
+        son = G.addNode(rInt(-10, 10))
+        notOriented(G, node, son)
+        coda.enqueue(son)
+        count += 1
+
+    while (count <= elemLimit - 1):
+        if (not coda.isEmpty()):
+            node = coda.dequeue()  # prendo nodo già inserito
+        son = G.addNode(rInt(-10, 10))
+        notOriented(G, node, son)
+        coda.enqueue(son)
+        count += 1  # tengo traccia dell'aumento dei nodi
+    del coda  # eliminiamo la coda
 
 def frayedThread(G, fN, elemLimit, sonLimit):
     """
@@ -146,7 +180,7 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
     coda.enqueue(fN)
 
     count = 1
-    while (count <= elemLimit-1): #and (elemLimit-count >= sonLimit):
+    while (count <= elemLimit-1):
         if (not coda.isEmpty()):
             node = coda.dequeue()  # prendo nodo già inserito
         for k in range(sonLimit):  # gli aggiungo un numero definito di figli
@@ -212,3 +246,6 @@ if __name__ == '__main__':
     print("\n\tsfilacciato Deterministico")
     g6 = mkGraph(20, "sfilacciato",3)
     g6.print()
+    print("\n\tasterisco")
+    g7 = mkGraph(20, "asterisco", 5)
+    g7.print()
