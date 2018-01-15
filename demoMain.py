@@ -54,6 +54,8 @@ def main ():
         print("Nella forma {} i nodi medi di più percorsi sono:".format(cmd[1]))
         for elem in listaMedi:
             print("\tNodo {} medio per {} volte.".format(elem[0].id, elem[1]))
+        print("\n\n\tIl grafo su cui è stato eseguito il codice è:")
+        g.print()
     del g
     print("{},{}".format(int(cmd[3]),elapsed))  #output per creare grafici
 
