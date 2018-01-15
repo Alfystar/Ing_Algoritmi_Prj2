@@ -15,12 +15,12 @@ def main ():
         exit(-1)
     if (cmd[1] == "rand"):
         if (len(cmd) < 5):
-            print("!!!!ERROR!!! correct sintax for RandomV1 is:\n<Modalità><OutputPrint 1/0><nElem><nMaxSon>")
+            print("!!!!ERROR!!! correct sintax for Random is:\n<Modalità><OutputPrint 1/0><nElem><nMaxSon>")
             exit(-1)
         g = mkGraph(int(cmd[3]), "rand", int(cmd[4]))
     if (cmd[1] == "fractal"):
         if (len(cmd) < 5):
-            print("!!!!ERROR!!! correct sintax for Fractal is:\n<Modalità><OutputPrint 1/0><nElem><d-son>")
+            print("!!!!ERROR!!! correct sintax for fractal is:\n<Modalità><OutputPrint 1/0><nElem><d-son>")
             print("\nLa corretta sintassi è:")
             helpPrint()
             exit(-1)
@@ -35,11 +35,17 @@ def main ():
             print("!!!!ERROR!!! correct sintax for Linear is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
         g = mkGraph(int(cmd[3]), "linear")
-    if (cmd[1] == "rand2"):
+    if (cmd[1] == "sfilacciatoRand"):
         if (len(cmd) < 4):
-            print("!!!!ERROR!!! correct sintax for RandomV2 is:\n<Modalità><OutputPrint 1/0><nElem>")
+            print("!!!!ERROR!!! correct sintax for sfilacciatoRand is:\n<Modalità><OutputPrint 1/0><nElem>")
             exit(-1)
-        g = mkGraph(int(cmd[3]), "rand2")
+        g = mkGraph(int(cmd[3]), "sfilacciatoRand")
+    if (cmd[1] == "sfilacciato"):
+        if (len(cmd) < 4):
+            print("!!!!ERROR!!! correct sintax for sfilacciato is:\n<Modalità><OutputPrint 1/0><nElem>")
+            exit(-1)
+        g = mkGraph(int(cmd[3]), "sfilacciato")
+
 
     t=time.time()
     listaMedi=mostNodes(g)
@@ -53,7 +59,8 @@ def main ():
 
 def helpPrint():
     print("Le possibili modalità di uso sono:")
-    print(("Filo Sfilacciato:\t\t\trand <OutputPrint 1/0> <nElem> <nMaxSon>"))
+    print(("Filo Sfilacciato Det:\t\t\tsfilacciato <OutputPrint 1/0> <nElem> <nSon-leaf>"))
+    print(("Filo Sfilacciato Rand:\t\t\tsfilacciatoRand <OutputPrint 1/0> <nElem> <nMaxSon>"))
     print(("Lineare:\t\t\t\tlinear <OutputPrint 1/0> <nElem> "))
     print(("Frattale o D-heap:\t\t\tfractal <OutputPrint 1/0> <nElem> <d-son>"))
     print(("Stella:\t\t\t\t\tstar <OutputPrint 1/0> <nElem>"))

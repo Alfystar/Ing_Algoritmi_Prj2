@@ -22,8 +22,11 @@ def mkGraph(elem, mod="rand", son = 5):
     newGr = GraphAdjacencyList()
     firstNode = newGr.addNode(rInt(-10, 10))  #nodo con valore casuale
 
-    if mod == "rand":
-        randomGraph(newGr, firstNode, elem, son)
+    if mod == "sfilacciatoRand":
+        frayedThreadRand(newGr, firstNode, elem, son)
+
+    if mod == "sfilacciato":
+        frayedThread(newGr, firstNode, elem, son)
 
     elif mod == "star":
         starGraph(newGr, firstNode, elem)
@@ -34,13 +37,39 @@ def mkGraph(elem, mod="rand", son = 5):
     elif mod == "fractal":
         fractalGraph(newGr, firstNode, elem, son)
 
-    elif mod == "rand2":
-        randomGraph2(newGr,elem)
+    elif mod == "rand":
+        randomGraph(newGr,elem)
 
     return newGr
 
+def frayedThread(G, fN, elemLimit, sonLimit):
+    """
+    Crea una pila che all'inizio contiene solo fN, e gli collega altri nodi in numero variabile. Questi saranno poi
+    i punti di partenza per generarne altri, finchè non viene raggiunto elemLimit. Il comando "del pila" serve per
+    deallocare lo spazio precedentemente occupato dalla pila.
+
+    :param G: grafo contenente fN
+    :param fN: è il fistNode creato in mkGraph
+    :param elemLimit: numero massimo di elementi da aggiungere al grafo, è lo stesso di mkGraph
+    :param sonLimit: numero massimo di figli per nodo, è lo stesso di mkGraph
+    :return:
+    """
+    #pila = stack()
+    #pila.push(fN)
+    node = fN
+    count = 1
+    while (count <= elemLimit-1):
+        for k in range(sonLimit+1): #aggiungo un numero definito di figli foglia, e l'ultimo che sarà il nuovo nodo
+            if (count > elemLimit-1):
+                break
+            son = G.addNode(rInt(-10, 10))
+            notOriented(G, node, son)
+            count+=1
+        node=son    #prendo l'ulimo nodo aggiunto e su di esso ripeto il procedimento
+
+
 #@profile(precision=6)
-def randomGraph(G, fN, elemLimit, sonLimit):
+def frayedThreadRand(G, fN, elemLimit, sonLimit):
     """
     Crea una pila che all'inizio contiene solo fN, e gli collega altri nodi in numero variabile. Questi saranno poi
     i punti di partenza per generarne altri, finchè non viene raggiunto elemLimit. Il comando "del pila" serve per
@@ -130,7 +159,7 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
     del coda  # eliminiamo la coda
 
 #@profile(precision=6)
-def randomGraph2(G,elemLimit):
+def randomGraph(G,elemLimit):
     """
     Genera un grafo in maniera random. Il comando "del l" finale serve a deallocare lo spazio precedentemente occupato
     dalla lista l.
@@ -165,18 +194,21 @@ def notOriented(g, n1, n2):
     g.insertEdge(n2.id, n1.id)
 
 if __name__ == '__main__':
-    print("random v1")
+    print("random")
     g1 = mkGraph(20, "rand", 5)
     g1.print()
-    print("star")
+    print("\n\tstar")
     g2 = mkGraph(20, "star")
     g2.print()
-    print("linear")
+    print("\n\tlinear")
     g3 = mkGraph(20, "linear")
     g3.print()
-    print("fractal")
+    print("\n\tfractal")
     g4 = mkGraph(20, "fractal", 3)
     g4.print()
-    print("random v2")
-    g5 = mkGraph(20, "rand2")
+    print("\n\tsfilacciato Random")
+    g5 = mkGraph(20, "sfilacciatoRand")
     g5.print()
+    print("\n\tsfilacciato Deterministico")
+    g6 = mkGraph(20, "sfilacciato",3)
+    g6.print()

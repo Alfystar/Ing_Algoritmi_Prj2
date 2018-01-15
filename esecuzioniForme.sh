@@ -9,11 +9,14 @@ echo esecuzione per il linerare
 echo esecuzione per la Stella
 ./serialRun.sh star $2 $1 100
 
-echo esecuzione per il filoSfilacciato 100 figli
-./serialRun.sh rand $2 $1 100
+echo esecuzione per il filoSfilacciato Deterministico 100 figli
+./serialRun.sh sfilacciato $2 $1 100
 
-echo esecuzione per il random puro
-./serialRun.sh rand2 $2 $1 100
+echo esecuzione per il filoSfilacciato Random 100 figli
+./serialRun.sh sfilacciatoRand $2 $1 100
+
+echo esecuzione per il random
+./serialRun.sh rand $2 $1 100
 
 echo esecuzione per il frattale al 2 figli
 ./serialRun.sh fractal $2 $1 2
