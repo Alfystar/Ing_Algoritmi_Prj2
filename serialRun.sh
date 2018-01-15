@@ -11,7 +11,7 @@ echo eseguo lo script Serial Run per la forma $1, fino a $((50*$2)) Elementi.
 
 
 #!!! Modifico la variabile Out al fine di rendere più leggibile la funzione
-if ( [ $1 != "fractal" ] && [ $1 != "sfilacciato" ] && [ $1 != "sfilacciatoRand" ] );
+if ( [ $1 != "fractal" ] && [ $1 != "sfilacciato" ] && [ $1 != "sfilacciatoRand" ] && [ $1 != "asterisk" ] );
 then
 	out="Time.dat"
 	echo non è frattale o sfilacciato

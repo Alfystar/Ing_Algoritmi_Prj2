@@ -1,5 +1,6 @@
 from random import randint as rInt
-#from memory_profiler import profile
+
+# from memory_profiler import profile
 if __name__ == '__main__':
     from graph.Graph_AdjacencyList import *
     from stack.Stack import PilaArrayList as stack
@@ -10,7 +11,7 @@ else:
     from queue.Queue import CodaArrayList_deque as queue
 
 
-def mkGraph(elem, mod="rand", son = 5):
+def mkGraph(elem, mod="rand", son=5):
     """
     Chiama le funzioni che creano il grafo; di default mod="rand" e son=5.
 
@@ -20,10 +21,10 @@ def mkGraph(elem, mod="rand", son = 5):
     :return: grafico sotto forma di lista di adiacenza
     """
     newGr = GraphAdjacencyList()
-    firstNode = newGr.addNode(rInt(-10, 10))  #nodo con valore casuale
-
+    firstNode = newGr.addNode(rInt(-10, 10))  # nodo con valore casuale
+    newGr.print()
     if mod == "asterisco":
-        asterisk(newGr,firstNode,elem,son)
+        asterisk(newGr, firstNode, elem, son)
 
     if mod == "sfilacciatoRand":
         frayedThreadRand(newGr, firstNode, elem, son)
@@ -31,19 +32,20 @@ def mkGraph(elem, mod="rand", son = 5):
     if mod == "sfilacciato":
         frayedThread(newGr, firstNode, elem, son)
 
-    elif mod == "star":
+    if mod == "star":
         starGraph(newGr, firstNode, elem)
 
-    elif mod == "linear":
+    if mod == "linear":
         linearGraph(newGr, firstNode, elem)
 
-    elif mod == "fractal":
+    if mod == "fractal":
         fractalGraph(newGr, firstNode, elem, son)
 
-    elif mod == "rand":
-        randomGraph(newGr,elem)
+    if mod == "rand":
+        randomGraph(newGr, elem)
 
     return newGr
+
 
 def asterisk(G, fN, elemLimit, sonLimit):
     """
@@ -64,7 +66,7 @@ def asterisk(G, fN, elemLimit, sonLimit):
 
     # abbozziamo i rami per definire la forma del grafo
     for k in range(sonLimit):
-        if sonLimit <= (count -1):
+        if sonLimit <= (count - 1):
             print("ERROR: not enough elements chosen")
             return
         son = G.addNode(rInt(-10, 10))
@@ -80,7 +82,8 @@ def asterisk(G, fN, elemLimit, sonLimit):
         notOriented(G, node, son)
         coda.enqueue(son)
         count += 1  # tengo traccia dell'aumento dei nodi
-    del coda  # eliminiamo la coda
+    # del coda  # eliminiamo la coda
+
 
 def frayedThread(G, fN, elemLimit, sonLimit):
     """
@@ -94,21 +97,21 @@ def frayedThread(G, fN, elemLimit, sonLimit):
     :param sonLimit: numero massimo di figli per nodo, è lo stesso di mkGraph
     :return:
     """
-    #pila = stack()
-    #pila.push(fN)
+    # pila = stack()
+    # pila.push(fN)
     node = fN
     count = 1
-    while (count <= elemLimit-1):
-        for k in range(sonLimit+1): #aggiungo un numero definito di figli foglia, e l'ultimo che sarà il nuovo nodo
-            if (count > elemLimit-1):
+    while (count <= elemLimit - 1):
+        for k in range(sonLimit + 1):  # aggiungo un numero definito di figli foglia, e l'ultimo che sarà il nuovo nodo
+            if (count > elemLimit - 1):
                 break
             son = G.addNode(rInt(-10, 10))
             notOriented(G, node, son)
-            count+=1
-        node=son    #prendo l'ulimo nodo aggiunto e su di esso ripeto il procedimento
+            count += 1
+        node = son  # prendo l'ulimo nodo aggiunto e su di esso ripeto il procedimento
 
 
-#@profile(precision=6)
+# @profile(precision=6)
 def frayedThreadRand(G, fN, elemLimit, sonLimit):
     """
     Crea una pila che all'inizio contiene solo fN, e gli collega altri nodi in numero variabile. Questi saranno poi
@@ -125,11 +128,11 @@ def frayedThreadRand(G, fN, elemLimit, sonLimit):
     pila.push(fN)
 
     count = 1
-    while (count <= elemLimit-1):
+    while (count <= elemLimit - 1):
         if (not pila.isEmpty()):
             node = pila.pop()  # prendo nodo già inserito
         for k in range(rInt(0, sonLimit)):  # gli aggiungo un numero casuale di figli
-            if (count > elemLimit-1):
+            if (count > elemLimit - 1):
                 break
             son = G.addNode(rInt(-10, 10))
             notOriented(G, node, son)
@@ -137,7 +140,8 @@ def frayedThreadRand(G, fN, elemLimit, sonLimit):
             count += 1  # tengo traccia dell'aumento dei nodi
     del pila  # eliminiamo la pila
 
-#@profile(precision=6)
+
+# @profile(precision=6)
 def starGraph(G, fN, elemLimit):
     """
     Genera tanti nodi che, con la funzione notOriented, saranno collegati a firstNode.
@@ -148,11 +152,12 @@ def starGraph(G, fN, elemLimit):
     :return:
     """
     node = fN
-    for k in range(elemLimit-1):
+    for k in range(elemLimit - 1):
         son = G.addNode(rInt(-10, 10))
         notOriented(G, node, son)
 
-#@profile(precision=6)
+
+# @profile(precision=6)
 def linearGraph(G, fN, elemLimit):
     """
     Genera un grafo lineare.
@@ -163,13 +168,14 @@ def linearGraph(G, fN, elemLimit):
     :return:
     """
     node = fN
-    for k in range(elemLimit-1):
-         # prendo nodo già inserito
+    for k in range(elemLimit - 1):
+        # prendo nodo già inserito
         son = G.addNode(rInt(-10, 10))
         notOriented(G, node, son)
         node = son
 
-#@profile(precision=6)
+
+# @profile(precision=6)
 def fractalGraph(G, fN, elemLimit, sonLimit):
     """
     Crea una coda che inizialmente contiene solo fN, e poi aggiunge i figli nel numero stabilito da sonLimit ad
@@ -186,7 +192,7 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
     coda.enqueue(fN)
 
     count = 1
-    while (count <= elemLimit-1):
+    while (count <= elemLimit - 1):
         if (not coda.isEmpty()):
             node = coda.dequeue()  # prendo nodo già inserito
         for k in range(sonLimit):  # gli aggiungo un numero definito di figli
@@ -198,8 +204,9 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
             count += 1  # tengo traccia dell'aumento dei nodi
     del coda  # eliminiamo la coda
 
-#@profile(precision=6)
-def randomGraph(G,elemLimit):
+
+# @profile(precision=6)
+def randomGraph(G, elemLimit):
     """
     Genera un grafo in maniera random. Il comando "del l" finale serve a deallocare lo spazio precedentemente occupato
     dalla lista l.
@@ -210,7 +217,7 @@ def randomGraph(G,elemLimit):
     """
 
     count = 1
-    #oldNode = fN
+    # oldNode = fN
     while (count <= elemLimit - 1):
         newNode = G.addNode(rInt(-10, 10))
         l = G.getNodes()
@@ -220,6 +227,7 @@ def randomGraph(G,elemLimit):
         notOriented(G, newNode, oldNode)
         count += 1
     del l
+
 
 def notOriented(g, n1, n2):
     """
@@ -233,8 +241,9 @@ def notOriented(g, n1, n2):
     g.insertEdge(n1.id, n2.id)
     g.insertEdge(n2.id, n1.id)
 
+
 if __name__ == '__main__':
-    print("random")
+    print("\trandom")
     g1 = mkGraph(20, "rand", 5)
     g1.print()
     print("\n\tstar")
@@ -250,8 +259,8 @@ if __name__ == '__main__':
     g5 = mkGraph(20, "sfilacciatoRand")
     g5.print()
     print("\n\tsfilacciato Deterministico")
-    g6 = mkGraph(20, "sfilacciato",3)
+    g6 = mkGraph(20, "sfilacciato", 3)
     g6.print()
     print("\n\tasterisco")
-    g7 = mkGraph(20, "asterisk", 5)
+    g7 = mkGraph(20, "asterisco", 5)
     g7.print()

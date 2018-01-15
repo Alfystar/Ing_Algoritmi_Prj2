@@ -17,7 +17,7 @@ def main ():
         if (len(cmd) < 5):
             print("!!!!ERROR!!! correct sintax for Random is:\n<Modalità><OutputPrint 1/0><nElem><nMaxSon>")
             exit(-1)
-        g = mkGraph(int(cmd[3]), "rand", int(cmd[4]))
+        g = mkGraph(int(cmd[3]), "rand")
     if (cmd[1] == "fractal"):
         if (len(cmd) < 5):
             print("!!!!ERROR!!! correct sintax for fractal is:\n<Modalità><OutputPrint 1/0><nElem><d-son>")
