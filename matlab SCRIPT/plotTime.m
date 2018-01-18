@@ -60,6 +60,11 @@ global star
 star= table2array(T);
 
 
+x=star(1,2)/10 %tempo teorico per 1 elemento
+global logTime
+logTime=(star(:,1)).*log10((star(:,1)))*x
+
+
 Normale = figure;
 
 figure(Normale);
@@ -142,11 +147,18 @@ global random
 % global sfilacciatoRand
 global sfilacciato
 global star
+
+global logTime
+
+
 width=2
 
 plot(linear(:,1),linear(:,2),'b','LineWidth',width,'DisplayName','Lineare')
 plot(star(:,1),star(:,2),'Color',hex2rgb('#00E100'),'LineWidth',width,'DisplayName','Stella')                                  %giada
 plot(random(:,1),random(:,2),'Color',hex2rgb('#FF0080'),'LineWidth',width,'DisplayName','Casuale')           %arancio bruciato
+
+plot(star(:,1),logTime(:,1),'Color',hex2rgb('#00C0FF'),'LineWidth',width,'DisplayName','LogTime teorico')           
+
 
 plot(sfilacciato(:,1),sfilacciato(:,2),'Color',hex2rgb('#ABCDEF'),'LineWidth',width,'DisplayName','Sfilacciato-2')  %azzurro fiordaliso
 
