@@ -26,13 +26,29 @@ fi
 
 echo "nElem, Time(s)" >> $3/"$1$out"  	#creo nomi colonne
 echo "<#>./serialRun $1 $2 $3 $4">>$3/logAction.log
+
+#iterazione per migliorare inizio logaritmico
+for i in $(seq 4);
+do
+	nElem=$((10*$i))
+	if [[ $nElem == 0 ]];
+	then
+		nElem=1
+	fi
+	./runAndData.sh  $1 0 $nElem $3 $4 $out
+	echo fatto "dei primi 5 fatto il $i°"
+	echo $(date) "iterazione $i" $'\n\t' "./runAndData.sh  $1 0 $nElem $3 $4">>$3/logAction.log
+	sleep 0.2	#da tempo a python di essere eliminato da ram
+done
+
+
 for i in $(seq $2);
 do
 	nElem=$((50*$i))
 	./runAndData.sh  $1 0 $nElem $3 $4 $out
-	echo fatto "$i"
+	echo fatto "$i°"
 	echo $(date) "iterazione $i" $'\n\t' "./runAndData.sh  $1 0 $nElem $3 $4">>$3/logAction.log
-
+	sleep 0.2	#da tempo a python di essere eliminato da ram
 done
 echo ------------------------------------------------------------------------------------------------------->>$3/logAction.log
 

@@ -55,6 +55,7 @@ def main ():
         helpPrint()
         exit(-1)
 
+    #time.sleep(0.1) #da tempo alla macchina pyton
     t=time.time()
     listaMedi=mostNodes(g)
     elapsed=time.time()-t

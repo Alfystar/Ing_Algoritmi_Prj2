@@ -66,8 +66,8 @@ def asterisk(G, fN, elemLimit, sonLimit):
 
     # abbozziamo i rami per definire la forma del grafo
     for k in range(sonLimit):
-        if sonLimit <= (count - 1):
-            print("ERROR: not enough elements chosen")
+        if (sonLimit <= (count - 1) or elemLimit <= (count - 1)):
+            #print("ERROR: not enough elements chosen")
             return
         son = G.addNode(rInt(-10, 10))
         notOriented(G, node, son)
@@ -218,6 +218,7 @@ def randomGraph(G, elemLimit):
 
     count = 1
     # oldNode = fN
+    l = []
     while (count <= elemLimit - 1):
         newNode = G.addNode(rInt(-10, 10))
         l = G.getNodes()
@@ -254,6 +255,7 @@ def grafoEsempio():
     notOriented(fig1, n6, n10)
     return fig1
 
+
 def notOriented(g, n1, n2):
     """
     Crea due archi per collegare n1 ed n2 tramite liste di adiacenza.
@@ -287,5 +289,5 @@ if __name__ == '__main__':
     g6 = mkGraph(20, "sfilacciato", 3)
     g6.print()
     print("\n\tasterisco")
-    g7 = mkGraph(20, "asterisco", 5)
+    g7 = mkGraph(10, "asterisco", 25)
     g7.print()
