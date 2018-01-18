@@ -32,12 +32,28 @@ class UnionFindQuickFind:
             rootA.sons.append(sonB)
             sonB.father = rootA
 
+    def __str__(self):          #ACB
+        s=""
+        for node in self.nodes:
+            s+="elem: "+str(node.elem)
+            s+="\t"
+            s+="Father: "+str(node.father.elem)
+            s+="\t"
+            s+="Father Son: ["
+            for fnode in node.father.sons:
+               s+=str(fnode.elem)+", "
+            s+="]"
+            s+= "\n"
+        return s
+
 def main():
     uf = UnionFindQuickFind()
 
     for i in range(10):
         print("makeset(" + str(i) + ")")
         uf.makeset(i)
+
+    print(uf)
 
     for i in range(10):
         print("find(" + str(i) + ")= " + str(uf.find(uf.nodes[i])))
@@ -46,12 +62,18 @@ def main():
     " contentente il nodo 2")
     uf.union(uf.nodes[0].father, uf.nodes[2].father)
 
+    print(uf)
+
     for i in range(10):
         print("find(" + str(i) + ")= " + str(uf.find(uf.nodes[i])))
+
 
     print("union effettuata sull'albero contenete il nodo 8 e l'albero"
     " contentente il nodo 4")
     uf.union(uf.nodes[8].father, uf.nodes[4].father)
+
+    print(uf)
+
 
     for i in range(10):
         print("find(" + str(i) + ")= " + str(uf.find(uf.nodes[i])))
@@ -59,14 +81,21 @@ def main():
     print("union effettuata sull'albero contenete il nodo 0 e l'albero"
     " contentente il nodo 8")
     uf.union(uf.nodes[0].father, uf.nodes[8].father)
+
+    print(uf)
+
     for i in range(10):
         print("find(" + str(i) + ")= " + str(uf.find(uf.nodes[i])))
 
     print("union effettuata sull'albero contenete il nodo 5 e l'albero"
     " contentente il nodo 8")
     uf.union(uf.nodes[5].father, uf.nodes[8].father)
+
+    print(uf)
+
     for i in range(10):
         print("find(" + str(i) + ")= " + str(uf.find(uf.nodes[i])))
+
 
 if __name__ == "__main__":
     main()
