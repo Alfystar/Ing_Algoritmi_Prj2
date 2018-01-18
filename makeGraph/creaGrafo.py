@@ -229,6 +229,31 @@ def randomGraph(G, elemLimit):
     del l
 
 
+def grafoEsempio():
+    fig1 = GraphAdjacencyList()
+    n0 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n1 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n2 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n3 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n4 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n5 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n6 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n7 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n8 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n9 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    n10 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
+    notOriented(fig1, n8, n4)
+    notOriented(fig1, n7, n4)
+    notOriented(fig1, n9, n4)
+    notOriented(fig1, n1, n4)
+    notOriented(fig1, n5, n1)
+    notOriented(fig1, n0, n1)
+    notOriented(fig1, n0, n2)
+    notOriented(fig1, n0, n3)
+    notOriented(fig1, n6, n3)
+    notOriented(fig1, n6, n10)
+    return fig1
+
 def notOriented(g, n1, n2):
     """
     Crea due archi per collegare n1 ed n2 tramite liste di adiacenza.
