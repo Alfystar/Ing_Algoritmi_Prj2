@@ -1,12 +1,11 @@
 ﻿from makeGraph.creaGrafo import mkGraph
 from medOfNode.medNode import medNode
-#from memory_profiler import profile
 
 debug = False
 
-#@profile(precision=4)
 def mostNodes(grafo):
     """
+    La funzione scorre tutti i nodi meno quelli fogli e su di essi esegue medNode, per scoprire quante volte è medio
     :param grafo:
     :return:
     """
@@ -24,6 +23,7 @@ def mostNodes(grafo):
 
 def findBetterNode(numMed, node, savedNode):
     """
+    salva nodo e quante volte è medio solo se è maggiore o uguale di quello attuale
     :param numMed:
     :return:
     """
@@ -36,11 +36,7 @@ def findBetterNode(numMed, node, savedNode):
 
 if __name__ == '__main__':
     g = mkGraph(2000, "rand", 500)
-    #g = mkGraph(2000, "star")
-    #g = mkGraph(2000, "linear")
-    # g = mkGraph(2000, "fractal", 5)
-    #print("created\n")
-    #g.print()
+
     listaNodi = mostNodes(g)
 
     print("Nodo/i medi per piu' volte:\n")

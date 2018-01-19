@@ -1,6 +1,4 @@
 from random import randint as rInt
-
-# from memory_profiler import profile
 if __name__ == '__main__':
     from graph.Graph_AdjacencyList import *
     from stack.Stack import PilaArrayList as stack
@@ -87,6 +85,7 @@ def asterisk(G, fN, elemLimit, sonLimit):
 
 def frayedThread(G, fN, elemLimit, sonLimit):
     """
+    Sfilacciato è una forma particolare che in ogni nodo mette dei figli foglia al fine di aumentare il confine
     Crea una pila che all'inizio contiene solo fN, e gli collega altri nodi in numero variabile. Questi saranno poi
     i punti di partenza per generarne altri, finchè non viene raggiunto elemLimit. Il comando "del pila" serve per
     deallocare lo spazio precedentemente occupato dalla pila.
@@ -97,8 +96,6 @@ def frayedThread(G, fN, elemLimit, sonLimit):
     :param sonLimit: numero massimo di figli per nodo, è lo stesso di mkGraph
     :return:
     """
-    # pila = stack()
-    # pila.push(fN)
     node = fN
     count = 1
     while (count <= elemLimit - 1):
@@ -111,9 +108,9 @@ def frayedThread(G, fN, elemLimit, sonLimit):
         node = son  # prendo l'ulimo nodo aggiunto e su di esso ripeto il procedimento
 
 
-# @profile(precision=6)
 def frayedThreadRand(G, fN, elemLimit, sonLimit):
     """
+    Sfilacciato-Random è una forma particolare che in ogni nodo mette dei figli foglia di numero variabile al fine di aumentare il confine
     Crea una pila che all'inizio contiene solo fN, e gli collega altri nodi in numero variabile. Questi saranno poi
     i punti di partenza per generarne altri, finchè non viene raggiunto elemLimit. Il comando "del pila" serve per
     deallocare lo spazio precedentemente occupato dalla pila.
@@ -175,7 +172,6 @@ def linearGraph(G, fN, elemLimit):
         node = son
 
 
-# @profile(precision=6)
 def fractalGraph(G, fN, elemLimit, sonLimit):
     """
     Crea una coda che inizialmente contiene solo fN, e poi aggiunge i figli nel numero stabilito da sonLimit ad
@@ -205,7 +201,6 @@ def fractalGraph(G, fN, elemLimit, sonLimit):
     del coda  # eliminiamo la coda
 
 
-# @profile(precision=6)
 def randomGraph(G, elemLimit):
     """
     Genera un grafo in maniera random. Il comando "del l" finale serve a deallocare lo spazio precedentemente occupato
@@ -231,6 +226,10 @@ def randomGraph(G, elemLimit):
 
 
 def grafoEsempio():
+    """
+    funzione che genera il grafo in Fig1 sulla relazione
+    :return: grafoFig1
+    """
     fig1 = GraphAdjacencyList()
     n0 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale
     n1 = fig1.addNode(rInt(-10, 10))  # nodo con valore casuale

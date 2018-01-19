@@ -2,9 +2,7 @@ from medofGraph.medGraph import mostNodes
 from makeGraph.creaGrafo import mkGraph
 import sys
 import time
-#from memory_profiler import profile
 
-#@profile(precision=8)
 def main ():
     cmd=sys.argv
     if(len(cmd)==1):
@@ -55,7 +53,6 @@ def main ():
         helpPrint()
         exit(-1)
 
-    #time.sleep(0.1) #da tempo alla macchina pyton
     t=time.time()
     listaMedi=mostNodes(g)
     elapsed=time.time()-t
