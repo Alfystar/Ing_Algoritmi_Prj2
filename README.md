@@ -5,6 +5,7 @@ Sviluppato da:
 3) Emanuele Alfano
 
 #Primo avvio di demoMain.py
+
 Al primo avvio del progetto sarà sufficente avviare con python3.6 il file senza alcun parametro e verra printata sul command la help della funzione con la sintassi da applicare per le singole forme.
 
 #Sintassi script Bash
