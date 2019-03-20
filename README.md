@@ -1,5 +1,3 @@
-View this project on [CADLAB.io](https://cadlab.io/project/1648). 
-
 # Progetto-2
 Sviluppato da:
 1) Filippo Badalamenti (Team Leader)
